@@ -6,14 +6,17 @@ function isLogin()
 {
 	global $CI;
 	$controller_name = $CI->uri->segment(1);
-	
+	$role_id = @$CI->session->userdata['logged_in']['role_id'];
 	//$frontend_pages = array("","home","bankers","contact_us","about_us","faqs","testimonials","login","register");
 	$frontend_pages = array("login","register");
 	if(!in_array($controller_name, $frontend_pages)  && $CI->session->userdata('logged_in') == '')
 	{
 		redirect('login');
 	}
-	
+
+	if (strpos($controller_name, 'admin_') !== false && $role_id != 1) {
+    	redirect('profile');
+	}	
 	/*$client_access_pages = array('dashboard','profile','packages','myteam','news','bonus');
 	if(in_array($controller_name, $client_access_pages)  && $CI->session->userdata('logged_in') == '')
 	{
