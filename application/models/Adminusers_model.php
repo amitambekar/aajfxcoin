@@ -7,24 +7,14 @@ class Adminusers_model extends CI_Model
         parent::__construct();  
     }
     
-    function save_users($news_heading,$news_desc,$created_date){
+    function give_bonus($userid,$coins,$coin_price,$description,$created_date){
         $this->db->trans_start();
-        $array = array('news_heading' => $news_heading,'news_desc'=>htmlspecialchars($news_desc),'created_date'=>$created_date);
+        $array = array('userid' => $userid,'coins'=>$coins,'coin_price'=>$coin_price,'description'=>$description,'status'=>'Credit','created_date'=>$created_date);
         $this->db->set($array);
-        $this->db->insert('news_master');
+        $this->db->insert('bonus');
         $last_inserted_id = $this->db->insert_id();
         $this->db->trans_complete();
         return $last_inserted_id;
-    }
-
-    function edit_news($news_id,$news_heading,$news_desc){
-        echo "news_id".$news_id;
-        $this->db->trans_start();
-        $array = array('news_heading' => $news_heading,'news_desc'=>htmlspecialchars($news_desc));
-        $this->db->where('news_id', $news_id);
-        $res = $this->db->update('news_master', $array);
-        $this->db->trans_complete();
-        return $res;
     }
 
     function delete_user($userid){
@@ -36,9 +26,9 @@ class Adminusers_model extends CI_Model
         $this->db->where('userid', $userid);
         $this->db->delete('user_settings');
         $this->db->where('userid', $userid);
-        $this->db->delete('user_packages');
-        $this->db->where('userid', $userid);
-        $this->db->delete('payout');
+        $this->db->delete('user_coins');
+        //$this->db->where('userid', $userid);
+        //$this->db->delete('payout');
         $this->db->trans_complete();
         return 1;
     }

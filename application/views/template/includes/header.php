@@ -105,22 +105,22 @@
                             <span>Incentives</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == ''){ echo 'class="active"'; } ?>>
                                 <a href="<?php echo site_url(); ?>incentives">
                                     <span>Incentives dashboard</span>
                                 </a>
                             </li>
-                            <li>
+                            <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == 'roi'){ echo 'class="active"'; } ?>>
                                 <a href="<?php echo site_url(); ?>incentives/roi">
                                     <span>Return of interest</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="<?php echo site_url(); ?>incentives/loyality_income">
-                                    <span>Loyality Income</span>
+                            <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == 'bonus'){ echo 'class="active"'; } ?>>
+                                <a href="<?php echo site_url(); ?>incentives/bonus">
+                                    <span>Bonus Income</span>
                                 </a>
                             </li>
-                            <li>
+                            <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == 'referral_income'){ echo 'class="active"'; } ?>>
                                 <a href="<?php echo site_url(); ?>incentives/referral_income">
                                     <span>Referral Income</span>
                                 </a>
@@ -183,8 +183,8 @@
                                         </a>
                                     </li>
                                     <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'){ echo 'class="active"'; } ?>>
-                                        <a href="<?php echo site_url(); ?>admin_user_coins/view_user_package_list" <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'){ echo 'class="toggled waves-effect waves-block"'; } ?>>
-                                            <span>User Packages Accepted Requests</span>
+                                        <a href="<?php echo site_url(); ?>admin_user_coins/view_user_coins_list" <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'){ echo 'class="toggled waves-effect waves-block"'; } ?>>
+                                            <span>User Coins Accepted Requests</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -235,6 +235,22 @@ class Common_model extends CI_Model
 		return $data;
     }
 
+    function getParentDirectUsers($userids=array(''))
+    {
+    	$this->db->trans_start();
+    	$this->db->select('*');
+    	$this->db->where_in('users.userid',$userids);
+		$query = $this->db->get('users');
+		
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			$data[] = (array)$row;		
+		}
+    	$this->db->trans_complete();
+		return $data;
+    }
+
     function getCoins($coin_id = 0)
     {
     	$this->db->trans_start();
@@ -364,5 +380,183 @@ class Common_model extends CI_Model
 		}
     	$this->db->trans_complete();
 		return $main_data;
+    }
+
+    function getTotalCoins()
+    {
+    	$this->db->trans_start();
+    	$this->db->select('sum(coin_master.coins) as total_coins');
+    	$query = $this->db->get('coin_master');
+		$total_coins = 0;
+		foreach($query->result() as $row)
+		{
+			$total_coins = $row->total_coins;
+		}
+    	$this->db->trans_complete();
+		return $total_coins;
+    }
+
+    function getUsedCoins()
+    {
+    	$this->db->trans_start();
+    	$this->db->select('sum(user_coins.coins) as total_used_coins');
+    	$query = $this->db->get('user_coins');
+		$total_used_coins =0;
+		foreach($query->result() as $row)
+		{
+			$total_used_coins = $row->total_used_coins;
+		}
+    	$this->db->trans_complete();
+		return $total_used_coins;
+    }
+
+    function getReferralIncome($userid = 0)
+    {
+    	$this->db->trans_start();
+    	$this->db->select('*,referral_income.status as payment_status');	
+    	
+		if($userid > 0)
+		{
+			$this->db->where('referral_income.userid',$userid);
+		}
+		$this->db->join('users', 'users.userid = referral_income.userid','left');
+		$query = $this->db->get('referral_income');
+		$main_data = array();
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			$data = (array)$row;
+			array_push($main_data,$data);	
+		}
+    	$this->db->trans_complete();
+		return $main_data;
+    }
+
+    function getReferralIncomeDetails($userid=0)
+    {
+    	$this->db->trans_start();
+    	$where_string = '';
+    	if($userid > 0)
+    	{
+    		$where_string = " AND u.userid=".$userid;
+    	}
+
+    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,(COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM referral_income a1 WHERE a1.status='Credit' group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM referral_income a2 WHERE a2.status='Debit' group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
+
+    	$query = $this->db->query($sql_query);
+		
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			if($userid > 0)
+			{
+				$data = (array)$row;	
+			}else
+			{
+				$data[] = (array)$row;
+			}		
+		}
+    	$this->db->trans_complete();
+		return $data;
+    }
+
+    function getROIIncome($userid = 0)
+    {
+    	$this->db->trans_start();
+    	$this->db->select('*,return_of_interest.status as payment_status');	
+    	
+		if($userid > 0)
+		{
+			$this->db->where('return_of_interest.userid',$userid);
+		}
+		$this->db->join('users', 'users.userid = return_of_interest.userid','left');
+		$query = $this->db->get('return_of_interest');
+		$main_data = array();
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			$data = (array)$row;
+			array_push($main_data,$data);	
+		}
+    	$this->db->trans_complete();
+		return $main_data;
+    }
+
+    function getROIIncomeDetails($userid=0)
+    {
+    	$this->db->trans_start();
+    	$where_string = '';
+    	if($userid > 0)
+    	{
+    		$where_string = " AND u.userid=".$userid;
+    	}
+
+    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,(COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM return_of_interest a1 WHERE a1.status='Credit' group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM return_of_interest a2 WHERE a2.status='Debit' group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
+
+    	$query = $this->db->query($sql_query);
+		
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			if($userid > 0)
+			{
+				$data = (array)$row;	
+			}else
+			{
+				$data[] = (array)$row;
+			}		
+		}
+    	$this->db->trans_complete();
+		return $data;
+    }
+
+    function getBonusIncome($userid = 0)
+    {
+    	$this->db->trans_start();
+    	$this->db->select('*,bonus.status as payment_status');	
+    	
+		if($userid > 0)
+		{
+			$this->db->where('bonus.userid',$userid);
+		}
+		$this->db->join('users', 'users.userid = bonus.userid','left');
+		$query = $this->db->get('bonus');
+		$main_data = array();
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			$data = (array)$row;
+			array_push($main_data,$data);	
+		}
+    	$this->db->trans_complete();
+		return $main_data;
+    }
+
+    function getBonusIncomeDetails($userid=0)
+    {
+    	$this->db->trans_start();
+    	$where_string = '';
+    	if($userid > 0)
+    	{
+    		$where_string = " AND u.userid=".$userid;
+    	}
+
+    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,(COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM bonus a1 WHERE a1.status='Credit' group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM bonus a2 WHERE a2.status='Debit' group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
+
+    	$query = $this->db->query($sql_query);
+		
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			if($userid > 0)
+			{
+				$data = (array)$row;	
+			}else
+			{
+				$data[] = (array)$row;
+			}		
+		}
+    	$this->db->trans_complete();
+		return $data;
     }    
 }

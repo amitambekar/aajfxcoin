@@ -119,7 +119,7 @@ class Register extends CI_Controller {
 				$template_data['verification_otp'] = $verification_otp;
 
 				$email_data['subject'] = 'New Registration Email Verfication';
-				$email_data['html'] = $this->load->view('template/email_templates/new_registration_verification',$template_data,true);;
+				$email_data['html'] = $this->load->view('template/email_templates/login_verification',$template_data,true);;
 				$email_data['to'] = $email;
 
 				send_sms($mobile,$email_data['html']);
@@ -226,7 +226,7 @@ class Register extends CI_Controller {
 				$template_data['verification_otp'] = $verification_otp;
 
 				$email_data['subject'] = 'New Registration Email Verfication';
-				$email_data['html'] = $this->load->view('template/email_templates/new_registration_verification',$template_data,true);;
+				$email_data['html'] = $this->load->view('template/email_templates/login_verification',$template_data,true);;
 				$email_data['to'] = $email;
 
 				send_sms($mobile,$email_data['html']);

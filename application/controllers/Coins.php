@@ -71,14 +71,21 @@ class Coins extends CI_Controller {
 			$this->form_validation->set_rules('payment_details', 'Payment Details', 'required');
 			$this->form_validation->set_rules('payment_type', 'Payment Type', 'required');
 			$coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
-			
-			if($coin_price > 0)
-			{
-				$error_array['coin_price'] = 'Coin Price not set yet';	
-			}
 			$this->form_validation->run();
 			$error_array = $this->form_validation->error_array();
 
+			if($coin_price < 0)
+			{
+				$error_array['coin_price'] = 'Coin Price not set yet.';	
+			}
+			$remaining_coins = getRemainingCoins();
+			$coins = $amount / $coin_price;
+			
+			if($remaining_coins < $coins)
+			{
+				$error_array['coins'] = 'Remaining Coins are zero.';	
+			}
+			
 			if(count($error_array) == 0 )
 	        {
 	        	$this->load->model('Coins_model');

@@ -29,67 +29,40 @@ class Admin_users extends CI_Controller {
 		$this->load->view('template/admin/view_user',$data);
 	}
 
-	public function save_news()
+	public function give_bonus()
 	{
 		if($this->input->post())
 		{
 			$status = '';
 			$message = '';
 			$this->load->library('form_validation');
-			$news_heading = $this->input->post('news_heading');
-			$news_desc = $this->input->post('news_desc');
-			
-			$this->form_validation->set_rules('news_heading', 'News Heading', 'required');
-			$this->form_validation->set_rules('news_desc', 'News Description', 'required');
+			$coins = $this->input->post('coins');
+			$description = $this->input->post('desc');
+			$userid = $this->input->post('userid');
+			$date = config_item('current_date');
+			$this->form_validation->set_rules('coins', 'Coins', 'required');
+			$this->form_validation->set_rules('desc', 'Description', 'required');
+			$this->form_validation->set_rules('userid', 'User ID', 'required');
 			
 			$this->form_validation->run();
 	        $error_array = $this->form_validation->error_array();
 	        
 	        if(count($error_array) == 0 )
 	        {
-	        	$this->Adminnews_model->save_news($news_heading,$news_desc,config_item('current_date'));	
+	        	$coin_price_data = getCoinPrice(true);
+	        	$coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+	        	$this->Adminusers_model->give_bonus($userid,$coins,$coin_price,$description,$date);	
 			    $status = 'success';
 			    $message = 'Added successfully';
+			    $status_code = 200;
 	        }else
 	        {
 	        	$status = 'error';
 	        	$message = $error_array;
+	        	$status_code = 501;
 	        }
 	        $response = array('status'=>$status,'message'=>$message);
-			echo responseObject($response);
-		}
-	}
-
-	public function edit_news()
-	{
-		if($this->input->post())
-		{
-			$status = '';
-			$message = '';
-			$this->load->library('form_validation');
-			$news_heading = $this->input->post('news_heading');
-			$news_desc = $this->input->post('news_desc');
-			$news_id = $this->input->post('news_id');
-			
-			$this->form_validation->set_rules('news_heading', 'News Heading', 'required');
-			$this->form_validation->set_rules('news_desc', 'News Description', 'required');
-			$this->form_validation->set_rules('news_id', 'News ID', 'required');
-			
-			$this->form_validation->run();
-	        $error_array = $this->form_validation->error_array();
-	        
-	        if(count($error_array) == 0 )
-	        {
-	        	$this->Adminnews_model->edit_news($news_id,$news_heading,$news_desc);	
-			    $status = 'success';
-			    $message = 'Edited successfully';
-	        }else
-	        {
-	        	$status = 'error';
-	        	$message = $error_array;
-	        }
-	        $response = array('status'=>$status,'message'=>$message);
-			echo responseObject($response);
+			echo responseObject($response,$status_code);
 		}
 	}
 

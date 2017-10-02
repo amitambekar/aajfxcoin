@@ -40,11 +40,11 @@
                             <div class="col-lg-4">
                                 <div class="info-box bg-pink hover-expand-effect">
                                     <div class="icon">
-                                        <i class="material-icons">attach_money</i>
+                                        <i class="material-icons">work</i>
                                     </div>
                                     <div class="content">
                                         <div class="text">1 COIN</div>
-                                        <div class="number" ><?= $coin_price; ?></div>
+                                        <div class="number" ><?= "₹ ".str_replace('.0000', '', $coin_price); ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="info-box bg-blue hover-expand-effect">
+                                <div class="info-box bg-green hover-expand-effect">
                                     <div class="icon">
                                         <i class="material-icons">account_balance_wallet</i>
                                     </div>

@@ -69,7 +69,7 @@
         <div class="card" id="otp_cart" style="display:none;">
             <div class="body">
                 <form id="sign_in" method="POST">
-                    <div class="msg">Verification</div>
+                    <div class="msg">Login Verification</div>
                     <div class="input-group" style="display:none;">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>

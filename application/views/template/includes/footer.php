@@ -16,7 +16,7 @@
 </div>
 <script>
 $(function () {
-    $("body").addClass('theme-deep-purple');
+    $("body").addClass('theme-indigo');
 });
 </script>
 <!-- Bootstrap Core Js -->

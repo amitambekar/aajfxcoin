@@ -15,10 +15,10 @@ class Adminusercoins_model extends CI_Model
         return true;
     }
 
-    function userCoinsRequestAction($user_coins_id,$status,$userid)
+    function userCoinsRequestAction($user_coins_id,$status,$userid,$acceptance_date)
     {
         $this->db->trans_start();
-        $array = array('status' => $status,'acceptance_date'=> config_item('current_date'));
+        $array = array('status' => $status,'acceptance_date'=> $acceptance_date);
         $this->db->where('id', $user_coins_id);
         $res = $this->db->update('user_coins', $array);
         

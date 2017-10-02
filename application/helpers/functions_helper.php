@@ -222,10 +222,42 @@ function getNews($news_id = 0)
 
 function getDirectUsers($userids=array())
 {
-       global $CI;
-       $CI->load->model('Common_model');
-       $result = $CI->Common_model->getDirectUsers($userids);
-       return $result; 
+    global $CI;
+    $CI->load->model('Common_model');
+    $result = $CI->Common_model->getDirectUsers($userids);
+    return $result; 
+}
+
+function getParentDirectUsers($userids=array())
+{
+   	global $CI;
+   	$CI->load->model('Common_model');
+   	$result = $CI->Common_model->getParentDirectUsers($userids);
+   	return $result; 
+}
+
+function getTreeParentDirectUsers($userid=0)
+{
+	global $CI;
+	$id= $userid;
+	$tree = array();
+	for($i = 1;$i <= 7 ;$i++)
+	{
+		if($id > 0)
+		{
+			$result = getParentDirectUsers($id);
+			$id = 0;
+			foreach ($result as $row) {
+				if($row['sponsorid'] > 0)
+				{
+					$data = getUserInfo($row['sponsorid']);
+					$tree[$i] = array('userid'=>$row['sponsorid'],'status'=>$data['status']);	
+					$id=$row['sponsorid'];
+				}
+			}
+		}
+	}	
+	return $tree;
 }
 
 function getCoins($coin_id = 0)
@@ -260,5 +292,62 @@ function getUserCoinAmount($userid = 0,$agg_func = '')
 	return $result;	
 }
 
+function getRemainingCoins()
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$total_coins = $CI->Common_model->getTotalCoins();
+	$total_used_coins = $CI->Common_model->getUsedCoins();
+	$result = $total_coins-$total_used_coins;
+	return $result;	
+}
+
+function getReferralIncome($userid=0)
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$result = $CI->Common_model->getReferralIncome($userid);
+	return $result;
+}
+
+function getReferralIncomeDetails($userid=0)
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$result = $CI->Common_model->getReferralIncomeDetails($userid);
+	return $result;
+}
+
+function getROIIncome($userid=0)
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$result = $CI->Common_model->getROIIncome($userid);
+	return $result;
+}
+
+function getROIIncomeDetails($userid=0)
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$result = $CI->Common_model->getROIIncomeDetails($userid);
+	return $result;
+}
+
+function getBonusIncome($userid=0)
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$result = $CI->Common_model->getBonusIncome($userid);
+	return $result;
+}
+
+function getBonusIncomeDetails($userid=0)
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$result = $CI->Common_model->getBonusIncomeDetails($userid);
+	return $result;
+}
 //$CI->output->enable_profiler(TRUE);
 ?>

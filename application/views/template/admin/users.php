@@ -54,9 +54,8 @@
                                             <td><?= $row['mobile'];?></td>
                                             <td><?= $row['status'] != '' ? $row['status']:'deactivate';?></td>
                                             <td>
-                                                <!--<button type="button" class="btn btn-success waves-effect" onclick="window.open('<?php echo site_url(); ?>admin_users/view/<?php echo $row['userid']; ?>','_blank')">View</button>-->
-
                                                 <button type="button" class="btn btn-primary waves-effect" ng-click="delete_user(<?php echo $row['userid']; ?>)">Delete</button>
+                                                <button type="button" class="btn btn-danger waves-effect" ng-click="give_bonus_modal(<?php echo $row['userid']; ?>)">Give Bonus</button>
                                                 
                                             </td>
                                         </tr>
@@ -70,31 +69,44 @@
         </div>
     </div>
 </section>
+<!-- Large Size -->
+<div class="modal fade" id="give_bonus_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="largeModalLabel">Give Bonus</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Coins : </label>
+                            <input type="text" class="form-control" ng-model="coins"/>
+                            <input type="hidden" class="form-control" ng-model="bonus_userid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Description : </label>
+                            <input type="text" class="form-control" ng-model="desc"/>
+                        </div>
+                    </div>
+                </div>        
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" ng-click="give_bonus();">GIVE BONUS</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?php $this->view('template/includes/footer'); ?>
-<!-- TinyMCE -->
-<script src="<?= base_url(); ?>assets/template/plugins/tinymce/tinymce.js"></script>
 <script>
 $(function () {
     $('.js-basic-example').DataTable({
         responsive: true
     });
-
-    //TinyMCE
-    tinymce.init({
-        selector: "textarea#tinymce",
-        theme: "modern",
-        height: 300,
-        plugins: [
-            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            'searchreplace wordcount visualblocks visualchars code fullscreen',
-            'insertdatetime media nonbreaking save table contextmenu directionality',
-            'emoticons template paste textcolor colorpicker textpattern imagetools'
-        ],
-        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-        toolbar2: 'print preview media | forecolor backcolor emoticons',
-        image_advtab: true
-    });
-    tinymce.suffix = ".min";
-    tinyMCE.baseURL = '<?= base_url(); ?>assets/template/plugins/tinymce';
 });
 </script>

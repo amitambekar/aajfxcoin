@@ -129,6 +129,7 @@ angular.module("MyApp", []).controller("MyController", function($scope,$http) {
                 $("#login_cart").hide();
                 $("#otp_cart").show();
                 $scope.r_username = $scope.login_username;
+                $scope.resend_otp();
             }
         }
 

@@ -1,6 +1,5 @@
 <?php $this->view('template/includes/header'); ?>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.form.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/ng/admin/user_packages.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/ng/admin/user_coins.js"></script>
 <section class="content">
     <div class="container-fluid">
         <!--<div class="block-header">
@@ -13,7 +12,7 @@
                 <div class="card">
                     <div class="header bg-red">
                         <h2>
-                            User Packages Accepted Requests
+                            User Coins Accepted Requests
                         </h2>
                     </div>
                     <div class="body">
@@ -22,11 +21,11 @@
                                 <thead>
                                     <tr>
                                         <th>User Name</th>
-                                        <th>Package Name</th>
-                                        <th>Package Amount</th>
+                                        <th>Coins</th>
+                                        <th>Coin price</th>
+                                        <th>Amount</th>
                                         <th>Payment Details</th>
                                         <th>Payment Type</th>
-                                        <th>Total Amount</th>
                                         <th>Purchase Date</th>
                                         <th>Acceptance Date</th>
                                     </tr>
@@ -34,27 +33,27 @@
                                 <tfoot>
                                     <tr>
                                         <th>User Name</th>
-                                        <th>Package Name</th>
-                                        <th>Package Amount</th>
+                                        <th>Coins</th>
+                                        <th>Coin price</th>
+                                        <th>Amount</th>
                                         <th>Payment Details</th>
                                         <th>Payment Type</th>
-                                        <th>Total Amount</th>
                                         <th>Purchase Date</th>
                                         <th>Acceptance Date</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                 <?php 
-                                    $user_package_list=getUserPackages(0,array('user_packages.status'=>'accepted'));
-                                    foreach ($user_package_list as $row ) { 
+                                    $user_coins_list=getUserCoin(0,'',array('user_coins.status'=>'accepted'));
+                                    foreach ($user_coins_list as $row ) { 
                                         ?>
-                                        <tr id="user-package-id-<?php echo $row['user_package_id']; ?>">
+                                        <tr>
                                             <td><?= $row['username'];?></td>
-                                            <td><?= $row['package_name'];?></td>
-                                            <td><?= $row['package_amount'];?></td>
+                                            <td><?= $row['coins'];?></td>
+                                            <td><?= $row['coin_price'];?></td>
+                                            <td><?= $row['amount'];?></td>
                                             <td><?= $row['payment_details'];?></td>
                                             <td><?= $row['payment_type'];?></td>
-                                            <td><?= $row['package_amount']*$row['quantity'];?></td>
                                             <td><?= $row['purchase_date'];?></td>
                                             <td><?= $row['acceptance_date']; ?></td>
                                         </tr>
@@ -69,30 +68,10 @@
     </div>
 </section>
 <?php $this->view('template/includes/footer'); ?>
-<!-- TinyMCE -->
-<script src="<?= base_url(); ?>assets/template/plugins/tinymce/tinymce.js"></script>
 <script>
 $(function () {
     $('.js-basic-example').DataTable({
         responsive: true
     });
-
-    //TinyMCE
-    tinymce.init({
-        selector: "textarea#tinymce",
-        theme: "modern",
-        height: 300,
-        plugins: [
-            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            'searchreplace wordcount visualblocks visualchars code fullscreen',
-            'insertdatetime media nonbreaking save table contextmenu directionality',
-            'emoticons template paste textcolor colorpicker textpattern imagetools'
-        ],
-        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-        toolbar2: 'print preview media | forecolor backcolor emoticons',
-        image_advtab: true
-    });
-    tinymce.suffix = ".min";
-    tinyMCE.baseURL = '<?= base_url(); ?>assets/template/plugins/tinymce';
 });
 </script>

@@ -1,33 +1,14 @@
 angular.module("MyApp", []).controller("MyController", function($scope,$http) {
-    $scope.save_news = function()
+    
+    $scope.give_bonus_modal = function(userid)
     {
-        save_news_success_cb = function(data)
-        {
-            if(data.status == "success")
-            {
-                alert("Successfully Saved");
-                window.location.reload();
-            }
-        }
-
-        news_heading = $("#news_heading").val() || '';
-        news_desc = $("#wysiwyg").val() || '';
-        if(news_heading == '')
-        {
-            alert_box('Please fill News Heading.');
-        }else if(news_desc == '')
-        {
-            alert_box('Please fill News Description.');
-        }
-        request_data = {};
-        request_data['news_heading'] = news_heading;
-        request_data['news_desc'] = news_desc;
-        SSK.site_call("AJAX",window._site_url+"admin_news/save_news",request_data, save_news_success_cb);
+        $('#give_bonus_modal').modal('show');
+        $scope.bonus_userid = userid;
     }
 
-    $scope.edit_news = function()
+    $scope.give_bonus = function()
     {
-        edit_news_success_cb = function(data)
+        var success_cb = function(data)
         {
             if(data.status == "success")
             {
@@ -35,14 +16,15 @@ angular.module("MyApp", []).controller("MyController", function($scope,$http) {
                 window.location.reload();
             }
         }
-        news_heading = $("#news_heading").val() || '';
-        news_desc = $("#wysiwyg").val() || '';
-        news_id = $("#news_id").val();
+
+        var userid = $scope.bonus_userid || 0;
+        var coins = $scope.coins || 0;
+        var desc = $scope.desc || '';
         request_data = {};
-        request_data['news_heading'] = news_heading;
-        request_data['news_desc'] = news_desc;
-        request_data['news_id'] = news_id;
-        SSK.site_call("AJAX",window._site_url+"admin_news/edit_news",request_data,edit_news_success_cb);
+        request_data['userid'] = userid;
+        request_data['coins'] = coins;
+        request_data['desc'] = desc;
+        SSK.site_call("AJAX",window._site_url+"admin_users/give_bonus",request_data, success_cb);
     }
 
     $scope.delete_user = function(userid)

@@ -37,7 +37,7 @@ class Login_model extends CI_Model
                             'status'=>$row->status,
                         ));
             }
-			$this->db->query("UPDATE users SET last_login='".config_item('current_date')."' WHERE userid='".$row->userid."' ");
+			$this->db->query("UPDATE users SET last_login='".config_item('current_date')."',verified='no' WHERE userid='".$row->userid."' ");
 			$this->db->trans_complete();
             $this->session->set_userdata($data);
             return 1;

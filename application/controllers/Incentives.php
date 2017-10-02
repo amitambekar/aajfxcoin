@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Payment_details extends CI_Controller {
+class Incentives extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -31,7 +31,7 @@ class Payment_details extends CI_Controller {
 		$session_data = $this->session->userdata;
 		$data = array();
 		$data['session_data'] = $session_data;
-		$this->load->view('template/payment_details',$data);
+		$this->load->view('template/incentives',$data);
 	}
 
 	public function roi()
@@ -42,12 +42,12 @@ class Payment_details extends CI_Controller {
 		$this->load->view('template/roi',$data);
 	}
 
-	public function loyality_income()
+	public function bonus()
 	{
 		$session_data = $this->session->userdata;
 		$data = array();
 		$data['session_data'] = $session_data;
-		$this->load->view('template/loyality_income',$data);
+		$this->load->view('template/bonus',$data);
 	}
 
 	public function referral_income()
