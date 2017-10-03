@@ -19,21 +19,6 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <?php $packages = getPackages(); ?>
-                                        <label>Packages</label>
-                                        <select class="form-control" ng-model="packages" multiple="multiple">
-                                            <?php foreach($packages as $row){ ?>
-                                            <option value="<?= $row['package_id']; ?>"><?= $row['package_name']; ?></option>    
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div class="form-line">
                                         <label>Notification</label>
                                         <textarea id="wysiwyg" class="form-control" placeholder="Enter notification ..." rows="10" ng-model="notification"></textarea>
                                     </div>

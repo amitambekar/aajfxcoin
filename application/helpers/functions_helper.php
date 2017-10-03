@@ -302,6 +302,14 @@ function getRemainingCoins()
 	return $result;	
 }
 
+function getReleasedUserCoins($userid = 0,$agg_func='',$filters=array())
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$result = $CI->Common_model->getUserCoin($userid,$agg_func,$filters);
+	return $result;	
+}
+
 function getReferralIncome($userid=0)
 {
 	global $CI;

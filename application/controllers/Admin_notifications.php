@@ -33,7 +33,6 @@ class Admin_notifications extends CI_Controller {
 			$status = '';
 			$message = '';
 			$notification = $this->input->post('notification');
-			$packages = $this->input->post('packages');
 			
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('notification', 'Notification', 'required');
@@ -43,7 +42,7 @@ class Admin_notifications extends CI_Controller {
 
 	        if(count($error_array) == 0 )
 	        {
-		        $this->Admin_notifications_model->add_notification($notification,$packages);
+		        $this->Admin_notifications_model->add_notification($notification);
 				$status = 'success';
 			    $message = 'added successfully';	
 			    $status_code = 200;

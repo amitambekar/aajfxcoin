@@ -7,6 +7,7 @@ class Admin_user_coins extends CI_Controller {
 	{
         parent::__construct();
         $this->load->model('Adminusercoins_model');
+        $this->load->model('Adminusers_model');
     }
 
 	public function index()
@@ -85,10 +86,14 @@ class Admin_user_coins extends CI_Controller {
 			}
 	        if(count($error_array) == 0 )
 	        {
+	        	$coin_price_data = getCoinPrice(true);
+	        	$coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+
+	        	$bonus_coins = $coins/2;
 		        $this->Adminusercoins_model->userCoinsRequestAction($user_coins_id,$status,$userid,$accepted_date);
 		        $obj = new Payout();
 		        $obj->referral_bonus($accepted_date,$userid,$user_coins_id);
-
+		        $this->Adminusers_model->give_bonus($userid,$bonus_coins,$coin_price,'Bonus Coins',$accepted_date);
 				$status = 'success';
 			    $message = 'Request Accepted successfully';	
 			    $status_code = 200;

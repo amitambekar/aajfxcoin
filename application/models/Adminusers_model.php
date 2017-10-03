@@ -8,10 +8,11 @@ class Adminusers_model extends CI_Model
     }
     
     function give_bonus($userid,$coins,$coin_price,$description,$created_date){
+        $amount = $coins*$coin_price;
         $this->db->trans_start();
-        $array = array('userid' => $userid,'coins'=>$coins,'coin_price'=>$coin_price,'description'=>$description,'status'=>'Credit','created_date'=>$created_date);
+        $array = array('userid' => $userid,'amount'=>$amount,'coins'=>$coins,'coin_price'=>$coin_price,'description'=>$description,'status'=>'Bonus Credit','purchase_date'=>$created_date,'acceptance_date'=>$created_date);
         $this->db->set($array);
-        $this->db->insert('bonus');
+        $this->db->insert('user_coins');
         $last_inserted_id = $this->db->insert_id();
         $this->db->trans_complete();
         return $last_inserted_id;

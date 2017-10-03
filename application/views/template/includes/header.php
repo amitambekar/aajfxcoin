@@ -134,56 +134,56 @@
                         </a>
                     </li>
                     <?php if($role_id == 1){ ?>
-                    <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_coin','admin_users','admin_notifications','admin_news','admin_payout'))){ echo 'class="active"'; } ?>>
+                    <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_coin','admin_users','admin_notifications','admin_news','admin_payout','admin_user_coins'))){ echo 'class="active"'; } ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">folder</i>
                             <span>Admin</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_coin','admin_users','admin_notifications','admin_news'))){ echo 'class="active"'; } ?>>
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Masters</span>
                                 </a>
                             <ul class="ml-menu">
+                                <li <?php if(isset($controller_name) && $controller_name == 'admin_users'){ echo 'class="active"'; } ?>>
+                                    <a href="<?php echo site_url(); ?>admin_users">
+                                        <span>User Master</span>
+                                    </a>
+                                </li>
                                 <li <?php if(isset($controller_name) && $controller_name == 'admin_coin' && $function_name == ''){ echo 'class="active"'; } ?>>
-                                    <a href="<?php echo site_url(); ?>admin_coin" <?php if(isset($controller_name) && $controller_name == 'admin_coin' && $function_name == ''){ echo 'class="toggled waves-effect waves-block"'; } ?>>
+                                    <a href="<?php echo site_url(); ?>admin_coin">
                                         <span>Coins Master</span>
                                     </a>
                                 </li>
                                 <li <?php if(isset($controller_name) && $controller_name == 'admin_coin' && $function_name == 'coin_price'){ echo 'class="active"'; } ?>>
-                                    <a href="<?php echo site_url(); ?>admin_coin/coin_price" <?php if(isset($controller_name) && $controller_name == 'admin_coin' && $function_name == 'coin_price'){ echo 'class="toggled waves-effect waves-block"'; } ?>>
+                                    <a href="<?php echo site_url(); ?>admin_coin/coin_price">
                                         <span>Coin Price Master</span>
                                     </a>
                                 </li>
                                 <li <?php if(isset($controller_name) && $controller_name == 'admin_notifications'){ echo 'class="active"'; } ?>>
-                                    <a href="<?php echo site_url(); ?>admin_notifications" <?php if(isset($controller_name) && $controller_name == 'admin_notifications'){ echo 'class="toggled waves-effect waves-block"'; } ?>>
+                                    <a href="<?php echo site_url(); ?>admin_notifications">
                                         <span>Notification Master</span>
                                     </a>
                                 </li>
                                 <li <?php if(isset($controller_name) && $controller_name == 'admin_news'){ echo 'class="active"'; } ?>>
-                                    <a href="<?php echo site_url(); ?>admin_news" <?php if(isset($controller_name) && $controller_name == 'admin_news'){ echo 'class="toggled waves-effect waves-block"'; } ?>>
+                                    <a href="<?php echo site_url(); ?>admin_news">
                                         <span>News Master</span>
                                     </a>
                                 </li>
                             </ul>
                             </li>
-                            <li>
+                            <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_user_coins'))){ echo 'class="active"'; } ?>>
                                 <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Users</span>
+                                    <span>User Requests</span>
                                 </a>
                                 <ul class="ml-menu">
-                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_users'){ echo 'class="active"'; } ?>>
-                                        <a href="<?php echo site_url(); ?>admin_users" <?php if(isset($controller_name) && $controller_name == 'admin_users'){ echo 'class="toggled waves-effect waves-block"'; } ?>>
-                                            <span>User Master</span>
-                                        </a>
-                                    </li>
-                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'){ echo 'class="active"'; } ?>>
-                                        <a href="<?php echo site_url(); ?>admin_user_coins" <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'){ echo 'class="toggled waves-effect waves-block"'; } ?>>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'  && $function_name == ''){ echo 'class="active"'; } ?>>
+                                        <a href="<?php echo site_url(); ?>admin_user_coins">
                                             <span>User Coins Request</span>
                                         </a>
                                     </li>
-                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'){ echo 'class="active"'; } ?>>
-                                        <a href="<?php echo site_url(); ?>admin_user_coins/view_user_coins_list" <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'){ echo 'class="toggled waves-effect waves-block"'; } ?>>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins' && $function_name == 'view_user_coins_list'){ echo 'class="active"'; } ?>>
+                                        <a href="<?php echo site_url(); ?>admin_user_coins/view_user_coins_list">
                                             <span>User Coins Accepted Requests</span>
                                         </a>
                                     </li>
