@@ -38,15 +38,11 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $total_coins = 0;
-                                $total_amount = 0; 
                                 $coin_price_data = getCoinPrice(true);
                                 $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
                                 $details = getReferralIncome($session_data['logged_in']['userid']); ?>
                                 <?php foreach ($details as $row ) {  
-                                    $total_coins = $total_coins + $row['coins'];
                                     $amount = $row['coins']*$coin_price;
-                                    $total_amount = $total_amount + $amount;
                                     ?>
                                     <tr>
                                         <td><?= $row['username'];?></td>
@@ -61,14 +57,14 @@
                                 <?php } ?>
                                 </tbody>
                                 <tfoot>
-                                    <th></th>
-                                    <th>Total coins : <?= $total_coins; ?></th>
-                                    <th>Total amount : <?= $total_amount; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Username</th>
+                                    <th>Coins</th>
+                                    <th>Amount</th>
+                                    <th>Payment Details</th>
+                                    <th>Payment Type</th>
+                                    <th>Payment Description</th>
+                                    <th>Payment status</th>
+                                    <th>Date</th>
                                 </tfoot>
                             </table>
                         </div>

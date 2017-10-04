@@ -9,46 +9,12 @@
 
             <?php 
                 $userid = $session_data['logged_in']['userid'];
-                $roi_details =  getROIIncomeDetails($userid);
-                $bonus_details = getBonusIncomeDetails($userid);
+                //$roi_details =  getROIIncomeDetails($userid);
+                //$bonus_details = getBonusIncomeDetails($userid);
                 $referral_details = getReferralIncomeDetails($userid);
             ?>
             <!-- Widgets -->
-            <div class="row clearfix">
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-grey hover-expand-effect">
-                        <div class="icon">
-                            <span class="chart chart-line">9,4,6,5,6,4,7,3</span>
-                        </div>
-                        <div class="content">
-                            <div class="text">Return of interest total</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($roi_details['Total_Coins']) ? $roi_details['Total_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-grey hover-expand-effect">
-                        <div class="icon">
-                            <span class="chart chart-line">9,4,6,5,6,4,7,3</span>
-                        </div>
-                        <div class="content">
-                            <div class="text">Return of interest paid</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($roi_details['Total_Coins']) ? $roi_details['Paid_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-grey hover-expand-effect">
-                        <div class="icon">
-                            <span class="chart chart-line">9,4,6,5,6,4,7,3</span>
-                        </div>
-                        <div class="content">
-                            <div class="text">Return of interest remaining total</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($roi_details['Remaining_Coins']) ? $roi_details['Remaining_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                
+            <div class="row clearfix">          
                 <div class="col-sm-4">
                     <div class="info-box-3 bg-blue hover-expand-effect">
                         <div class="icon">
@@ -79,39 +45,6 @@
                         <div class="content">
                             <div class="text">Referral income remaining</div>
                             <div class="number"><?= "₹ ".sprintf("%02d", (isset($referral_details['Remaining_Coins']) ? $referral_details['Remaining_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box bg-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">archive</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Bonus income total</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d",(isset($bonus_details['Total_Coins']) ? $bonus_details['Total_Coins'] : 0)); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box bg-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">archive</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Bonus income paid</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($bonus_details['Paid_Coins']) ? $bonus_details['Paid_Coins'] : 0)); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box bg-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">archive</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Bonus income remaining</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($bonus_details['Remaining_Coins']) ? $bonus_details['Remaining_Coins'] : 0)); ?></div>
                         </div>
                     </div>
                 </div>
