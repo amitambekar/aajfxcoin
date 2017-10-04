@@ -129,7 +129,7 @@ class Coins extends CI_Controller {
 			$released_coins = getReleasedUserCoins($userid,'sum',array('user_coins.status'=>'Credit'));
 			if($released_coins < $coins)
 			{
-				//$error_array['coins'] = 'Not enough released coins to sell.';	
+				$error_array['coins'] = 'Not enough released coins to sell.';	
 			}
 
 			if(count($error_array) == 0 )

@@ -21,7 +21,7 @@ class Coins_model extends CI_Model
 
     function sell_coins($userid,$coins,$amount,$coin_price,$payment_details,$payment_type,$created_date){
         $this->db->trans_start();
-        $array = array('userid' => $userid,'amount'=>$amount,'coin_price'=>$coin_price,'coins'=>$coins,'payment_details'=>$payment_details,'payment_type'=>$payment_type,'acceptance_date'=> $created_date,'purchase_date'=> $created_date,'status'=>'Debit Request');
+        $array = array('userid' => $userid,'amount'=>$amount,'coin_price'=>$coin_price,'coins'=>$coins,'payment_details'=>$payment_details,'payment_type'=>$payment_type,'purchase_date'=> $created_date,'status'=>'Debit Request');
         $this->db->set($array);
         $this->db->insert('user_coins');
         $last_inserted_id = $this->db->insert_id();

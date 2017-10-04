@@ -40,7 +40,7 @@
                                 $total_amount = $total_amount + ($row['coins']*$coin_price);
                             }
 
-                            if($row['user_coins_status'] == 'Bonus Credit')
+                            if($row['user_coins_status'] == 'Bonus')
                             {
                                 $number_of_coins = $number_of_coins + $row['coins'];
                                 $total_amount = $total_amount + ($row['coins']*$coin_price);
@@ -104,7 +104,7 @@
                                     <tr>
                                         <th>Coins</th>
                                         <th>Coin Price</th>
-                                        <th>Purchase Amount</th>
+                                        <th>Actual Amount</th>
                                         <th>Current Amount</th>
                                         <th>Status</th>
                                         <th>Date</th>
@@ -115,7 +115,7 @@
                                     <tr>
                                         <th>Coins</th>
                                         <th>Coin Price</th>
-                                        <th>Purchase Amount</th>
+                                        <th>Actual Amount</th>
                                         <th>Current Amount</th>
                                         <th>Status</th>
                                         <th>Date</th>

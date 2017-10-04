@@ -22,7 +22,7 @@ class Incentives extends CI_Controller {
 	public function __construct() 
 	{
         parent::__construct();
-        $this->load->model('Paymentdetails_model');
+        $this->load->model('Incentives_model');
    		$this->menu_active = 'payment_details';
     }
 
@@ -32,22 +32,6 @@ class Incentives extends CI_Controller {
 		$data = array();
 		$data['session_data'] = $session_data;
 		$this->load->view('template/incentives',$data);
-	}
-
-	public function roi()
-	{
-		$session_data = $this->session->userdata;
-		$data = array();
-		$data['session_data'] = $session_data;
-		$this->load->view('template/roi',$data);
-	}
-
-	public function bonus()
-	{
-		$session_data = $this->session->userdata;
-		$data = array();
-		$data['session_data'] = $session_data;
-		$this->load->view('template/bonus',$data);
 	}
 
 	public function referral_income()
@@ -63,5 +47,56 @@ class Incentives extends CI_Controller {
 		$session_data = $this->session->userdata;
 		$userid = $session_data['logged_in']['userid'];
 		$total =  getBonus($userid,false);
+	}
+
+
+	public function sell_referral_coins()
+	{
+		if($this->input->post())
+		{
+			$status = '';
+			$message = '';
+			$session_data = $this->session->userdata;
+			$userid = $session_data['logged_in']['userid'];
+		
+			$coins = $this->input->post('coins');
+			$payment_details = $this->input->post('payment_details');
+			$payment_type = $this->input->post('payment_type');
+			
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('coins', 'Coins', 'required|numeric|greater_than[0]');
+			$this->form_validation->set_rules('payment_details', 'Payment Details', 'required');
+			$this->form_validation->set_rules('payment_type', 'Payment Type', 'required');
+
+			$this->form_validation->run();
+			$error_array = $this->form_validation->error_array();
+
+			$referral_data = getReferralIncomeDetails($userid);
+			$total_coins = $referral_data['Total_Coins'];
+			if($total_coins < $coins)
+			{
+				$error_array['coins'] = 'Not enough coins to sell.';	
+			}
+
+			if(count($error_array) == 0 )
+	        {
+	        	$this->load->model('Coins_model');
+				$created_date = config_item('current_date');
+				$coin_price_data = getCoinPrice(true);
+				$coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);	
+				$amount = $coins * $coin_price;
+				$this->Incentives_model->sell_referral_coins($userid,$coins,$amount,$coin_price,$payment_details,$payment_type,$created_date);
+	        	$status = 'success';
+			    $message = 'added successfully';
+			    $status_code = 200;
+	        }else
+			{
+				$status = 'error';
+			    $message = $error_array;
+			    $status_code = 501;
+			}
+			$response = array('status'=>$status,'message'=>$message);
+			echo responseObject($response,$status_code);			
+		}
 	}
 }

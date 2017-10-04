@@ -115,11 +115,6 @@
                                     <span>Return of interest</span>
                                 </a>
                             </li>
-                            <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == 'bonus'){ echo 'class="active"'; } ?>>
-                                <a href="<?php echo site_url(); ?>incentives/bonus">
-                                    <span>Bonus Income</span>
-                                </a>
-                            </li>
                             <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == 'referral_income'){ echo 'class="active"'; } ?>>
                                 <a href="<?php echo site_url(); ?>incentives/referral_income">
                                     <span>Referral Income</span>
@@ -174,17 +169,37 @@
                             </li>
                             <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_user_coins'))){ echo 'class="active"'; } ?>>
                                 <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>User Requests</span>
+                                    <span>Requests</span>
                                 </a>
                                 <ul class="ml-menu">
                                     <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins'  && $function_name == ''){ echo 'class="active"'; } ?>>
                                         <a href="<?php echo site_url(); ?>admin_user_coins">
-                                            <span>User Coins Request</span>
+                                            <span>User Coins Buy Request</span>
                                         </a>
                                     </li>
                                     <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins' && $function_name == 'view_user_coins_list'){ echo 'class="active"'; } ?>>
                                         <a href="<?php echo site_url(); ?>admin_user_coins/view_user_coins_list">
-                                            <span>User Coins Accepted Requests</span>
+                                            <span>User Coins Bought Requests</span>
+                                        </a>
+                                    </li>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins' && $function_name == 'roi_purchased_sell_requests'){ echo 'class="active"'; } ?>>
+                                        <a href="<?php echo site_url(); ?>admin_user_coins/roi_purchased_sell_requests">
+                                            <span>ROI & Purchased Coins Sell Requests</span>
+                                        </a>
+                                    </li>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins' && $function_name == 'roi_purchased_accepted_sell_requests'){ echo 'class="active"'; } ?>>
+                                        <a href="<?php echo site_url(); ?>admin_user_coins/roi_purchased_accepted_sell_requests">
+                                            <span>ROI & Purchased Coins Accepted Sell Requests</span>
+                                        </a>
+                                    </li>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins' && $function_name == 'referral_sell_requests'){ echo 'class="active"'; } ?>>
+                                        <a href="<?php echo site_url(); ?>admin_user_coins/referral_sell_requests">
+                                            <span>Referral Coins Sell Requests</span>
+                                        </a>
+                                    </li>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_coins' && $function_name == 'referral_accpepted_sell_requests'){ echo 'class="active"'; } ?>>
+                                        <a href="<?php echo site_url(); ?>admin_user_coins/referral_accpepted_sell_requests">
+                                            <span>Referral Coins Accepted Sell Requests</span>
                                         </a>
                                     </li>
                                 </ul>

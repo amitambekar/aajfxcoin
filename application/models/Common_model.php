@@ -410,7 +410,7 @@ class Common_model extends CI_Model
 		return $total_used_coins;
     }
 
-    function getReferralIncome($userid = 0)
+    function getReferralIncome($userid = 0,$filters = array())
     {
     	$this->db->trans_start();
     	$this->db->select('*,referral_income.status as payment_status');	
@@ -418,6 +418,11 @@ class Common_model extends CI_Model
 		if($userid > 0)
 		{
 			$this->db->where('referral_income.userid',$userid);
+		}
+
+		foreach($filters as $key=>$value)
+		{
+			$this->db->where($key,$value);
 		}
 		$this->db->join('users', 'users.userid = referral_income.userid','left');
 		$query = $this->db->get('referral_income');
