@@ -127,7 +127,7 @@ class Coins extends CI_Controller {
 			$error_array = $this->form_validation->error_array();
 
 			$released_coins = getReleasedUserCoins($userid,'sum',array('user_coins.status'=>'Credit'));
-			if($released_coins < $coins)
+			if($released_coins >= $coins)
 			{
 				$error_array['coins'] = 'Not enough released coins to sell.';	
 			}

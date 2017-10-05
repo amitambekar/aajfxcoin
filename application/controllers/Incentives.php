@@ -73,7 +73,7 @@ class Incentives extends CI_Controller {
 
 			$referral_data = getReferralIncomeDetails($userid);
 			$Remaining_Coins = $referral_data['Remaining_Coins'];
-			if($Remaining_Coins < $coins)
+			if($Remaining_Coins >= $coins)
 			{
 				$error_array['coins'] = 'Not enough coins to sell.';	
 			}
