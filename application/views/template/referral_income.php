@@ -22,6 +22,90 @@
                         </ul>
                     </div>
                     <div class="body">
+                        <?php
+                        $userid = $session_data['logged_in']['userid']; 
+                        $coin_price_data = getCoinPrice(true);
+                        $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+                        
+                        $number_of_coins = 0;
+                        $number_of_debited_coins = 0;
+                        
+                        $total_amount = 0;
+                        $total_withdraw_amount = 0;
+                        $get_user_coin_data = getReferralIncome($userid);
+                        foreach ($get_user_coin_data as $row) {
+                            if($row['payment_status'] == 'Credit')
+                            {
+                                $number_of_coins = $number_of_coins + $row['coins'];
+                            }
+
+                            if($row['payment_status'] == 'Debit' || $row['payment_status'] == 'Debit Request')
+                            {
+                                $number_of_debited_coins = $number_of_debited_coins + $row['coins'];
+                                $total_withdraw_amount = $total_withdraw_amount + $row['coins']*$row['coin_price'];
+                            }
+                        }
+
+                        $number_of_coins = $number_of_coins - $number_of_debited_coins;
+                        $total_amount = $number_of_coins*$coin_price;
+                        ?>
+                        <div class="row clearfix">
+                            <div class="col-lg-3">
+                                <div class="info-box bg-pink">
+                                    <div class="icon">
+                                        <i class="material-icons">work</i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="text">1 COIN</div>
+                                        <div class="number" ><?= "₹ ".str_replace('.0000', '', $coin_price); ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="info-box bg-blue">
+                                    <!--<div class="icon">
+                                        <i class="material-icons">store</i>
+                                    </div>-->
+                                    <div class="content">
+                                        <div class="text">TOTAL COINS</div>
+                                        <div class="number" ><?= $number_of_coins; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="info-box bg-blue">
+                                    <!--<div class="icon">
+                                        <i class="material-icons">account_balance_wallet</i>
+                                    </div>-->
+                                    <div class="content">
+                                        <div class="text">TOTAL AMOUNT</div>
+                                        <div class="number" ><?= $total_amount; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="info-box bg-orange">
+                                    <!--<div class="icon">
+                                        <i class="material-icons">store</i>
+                                    </div>-->
+                                    <div class="content">
+                                        <div class="text">WITHDRAW COINS</div>
+                                        <div class="number" ><?= $number_of_debited_coins; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="info-box bg-orange">
+                                    <!--<div class="icon">
+                                        <i class="material-icons">store</i>
+                                    </div>-->
+                                    <div class="content">
+                                        <div class="text">WITHDRAW AMOUNT</div>
+                                        <div class="number" ><?= $total_withdraw_amount; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
@@ -40,9 +124,16 @@
                                 <?php
                                 $coin_price_data = getCoinPrice(true);
                                 $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
-                                $details = getReferralIncome($session_data['logged_in']['userid']); ?>
-                                <?php foreach ($details as $row ) {  
-                                    $amount = $row['coins']*$coin_price;
+                                ?>
+                                <?php foreach ($get_user_coin_data as $row ) {  
+                                    if($row['payment_status'] == 'Debit' || $row['payment_status'] == 'Debit Request')
+                                    {
+                                        $amount = $row['coins']*$row['coin_price'];    
+                                    }else
+                                    {
+                                        $amount = $row['coins']*$coin_price;
+                                    }
+                                    
                                     ?>
                                     <tr>
                                         <td><?= $row['username'];?></td>

@@ -29,28 +29,42 @@
                         
                         $number_of_coins = 0;
                         $number_of_released_coins = 0;
-                        $total_amount = 0;
-
+                        $number_of_debited_coins = 0;
                         
+                        $total_amount = 0;
+                        $total_released_amount = 0;
+                        $total_withdraw_amount = 0;
                         $get_user_coin_data = getUserCoin($userid);
                         foreach ($get_user_coin_data as $row) {
                             if($row['user_coins_status'] == 'accepted')
                             {
                                 $number_of_coins = $number_of_coins + $row['coins'];
-                                $total_amount = $total_amount + ($row['coins']*$coin_price);
                             }
 
                             if($row['user_coins_status'] == 'Bonus')
                             {
                                 $number_of_coins = $number_of_coins + $row['coins'];
-                                $total_amount = $total_amount + ($row['coins']*$coin_price);
                             }
 
                             if($row['user_coins_status'] == 'Credit')
                             {
                                 $number_of_released_coins = $number_of_released_coins + $row['coins'];
                             }
+
+                            if($row['user_coins_status'] == 'Debit' || $row['user_coins_status'] == 'Debit Request')
+                            {
+                                $number_of_debited_coins = $number_of_debited_coins + $row['coins'];
+                                $total_withdraw_amount = $total_withdraw_amount + $row['coins']*$row['coin_price'];
+                            }
                         }
+
+                        $number_of_coins = $number_of_coins - $number_of_released_coins;
+                        $total_amount = $number_of_coins*$coin_price;
+
+                        $number_of_released_coins = $number_of_released_coins - $number_of_debited_coins;
+                        $total_released_amount = $number_of_released_coins*$coin_price;
+
+
                         ?>
                         <div class="row clearfix">
                             <div class="col-lg-3">
@@ -76,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <div class="info-box bg-green">
+                                <div class="info-box bg-blue">
                                     <!--<div class="icon">
                                         <i class="material-icons">account_balance_wallet</i>
                                     </div>-->
@@ -87,13 +101,46 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <div class="info-box bg-orange">
+                                <div class="info-box bg-green">
                                     <!--<div class="icon">
                                         <i class="material-icons">store</i>
                                     </div>-->
                                     <div class="content">
                                         <div class="text">TOTAL RELEASED COINS</div>
                                         <div class="number" ><?= $number_of_released_coins; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="info-box bg-green">
+                                    <!--<div class="icon">
+                                        <i class="material-icons">store</i>
+                                    </div>-->
+                                    <div class="content">
+                                        <div class="text">TOTAL RELEASED AMOUNT</div>
+                                        <div class="number" ><?= $total_released_amount; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="info-box bg-orange">
+                                    <!--<div class="icon">
+                                        <i class="material-icons">store</i>
+                                    </div>-->
+                                    <div class="content">
+                                        <div class="text">WITHDRAW COINS</div>
+                                        <div class="number" ><?= $number_of_debited_coins; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="info-box bg-orange">
+                                    <!--<div class="icon">
+                                        <i class="material-icons">store</i>
+                                    </div>-->
+                                    <div class="content">
+                                        <div class="text">WITHDRAW AMOUNT</div>
+                                        <div class="number" ><?= $total_withdraw_amount; ?></div>
                                     </div>
                                 </div>
                             </div>

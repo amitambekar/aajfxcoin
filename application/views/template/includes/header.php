@@ -110,11 +110,6 @@
                                     <span>Incentives dashboard</span>
                                 </a>
                             </li>
-                            <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == 'roi'){ echo 'class="active"'; } ?>>
-                                <a href="<?php echo site_url(); ?>incentives/roi">
-                                    <span>Return of interest</span>
-                                </a>
-                            </li>
                             <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == 'referral_income'){ echo 'class="active"'; } ?>>
                                 <a href="<?php echo site_url(); ?>incentives/referral_income">
                                     <span>Referral Income</span>

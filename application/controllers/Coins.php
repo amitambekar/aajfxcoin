@@ -126,8 +126,16 @@ class Coins extends CI_Controller {
 			$this->form_validation->run();
 			$error_array = $this->form_validation->error_array();
 
-			$released_coins = getReleasedUserCoins($userid,'sum',array('user_coins.status'=>'Credit'));
-			if($released_coins >= $coins)
+			$released_credit_coins = getUserCoin($userid,'sum(user_coins.coins) as number_of_coins',array('user_coins.status'=>'Credit'));
+			$released_debit_coins = getUserCoin($userid,'sum(user_coins.coins) as number_of_coins',array('user_coins.status'=>'Debit'));
+			$released_debit_request_coins = getUserCoin($userid,'sum(user_coins.coins) as number_of_coins',array('user_coins.status'=>'Debit Request'));
+			
+			$released_credit_coins = $released_credit_coins['number_of_coins'];
+			$released_debit_coins = $released_debit_coins['number_of_coins'];
+			$released_debit_request_coins = $released_debit_request_coins['number_of_coins'];
+
+			$released_coins = $released_credit_coins - $released_debit_coins - $released_debit_request_coins;
+			if($released_coins < $coins)
 			{
 				$error_array['coins'] = 'Not enough released coins to sell.';	
 			}

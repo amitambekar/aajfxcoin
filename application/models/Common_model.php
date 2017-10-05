@@ -307,15 +307,15 @@ class Common_model extends CI_Model
     }
 
 
-    function getUserCoin($userid = 0,$agg_func='',$filters=array())
+    function getUserCoin($userid = 0,$agg_qry='',$filters=array())
     {
     	$this->db->trans_start();
-    	if($agg_func == '')
+    	if($agg_qry == '')
     	{
     		$this->db->select('*,user_coins.id as user_coins_id,user_coins.status as user_coins_status');	
     	}else
     	{
-    		$this->db->select($agg_func.'(user_coins.coins) as number_of_coins');	
+    		$this->db->select($agg_qry);	
     	}
     	
 		if($userid > 0)
@@ -334,7 +334,7 @@ class Common_model extends CI_Model
 		foreach($query->result() as $row)
 		{
 			$data = (array)$row;
-			if($agg_func != '')
+			if($agg_qry != '')
 			{
 				$main_data = $data;
 			}else
@@ -446,7 +446,7 @@ class Common_model extends CI_Model
     		$where_string = " AND u.userid=".$userid;
     	}
 
-    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,(COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM referral_income a1 WHERE a1.status='Credit' group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM referral_income a2 WHERE a2.status IN ('Debit','Debit Request') group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
+    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,COALESCE((COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)),0) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM referral_income a1 WHERE a1.status='Credit' group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM referral_income a2 WHERE a2.status IN ('Debit','Debit Request') group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
 
     	$query = $this->db->query($sql_query);
 		
