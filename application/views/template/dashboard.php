@@ -7,127 +7,221 @@
                 <h2>DASHBOARD</h2>
             </div>-->
 
-            <?php 
-                $userid = $session_data['logged_in']['userid'];
-                $roi_details =  getROIIncomeDetails($userid);
-                $bonus_details = getBonusIncomeDetails($userid);
-                $referral_details = getReferralIncomeDetails($userid);
+            <?php
+            $userid = $session_data['logged_in']['userid']; 
+            $coin_price_data = getCoinPrice(true);
+            $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+            
+            $number_of_referral_coins = 0;
+            $number_of_referral_debited_coins = 0;
+            
+            $total_referral_amount = 0;
+            $total_referral_withdraw_amount = 0;
+            $get_user_coin_data = getReferralIncome($userid);
+            foreach ($get_user_coin_data as $row) {
+                if($row['payment_status'] == 'Credit')
+                {
+                    $number_of_referral_coins = $number_of_referral_coins + $row['coins'];
+                }
 
-                $coin_price_data = getCoinPrice(true);
-                $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+                if($row['payment_status'] == 'Debit' || $row['payment_status'] == 'Debit Request')
+                {
+                    $number_of_referral_debited_coins = $number_of_referral_debited_coins + $row['coins'];
+                    $total_referral_withdraw_amount = $total_referral_withdraw_amount + $row['coins']*$row['coin_price'];
+                }
+            }
+
+            $number_of_referral_coins = $number_of_referral_coins - $number_of_referral_debited_coins;
+            $total_referral_amount = $number_of_referral_coins*$coin_price;
             ?>
             <!-- Widgets -->
-            <div class="row clearfix">
-                <div class="col-lg-4">
-                    <div class="info-box-3 bg-pink hover-expand-effect">
-                        <div class="icon">
-                            <span class="chart chart-line">9,4,6,5,6,4,7,3</span>
-                        </div>
-                        <div class="content">
-                            <div class="text">1 COIN</div>
-                            <div class="number" >₹ <?= str_replace('.0000', '', $coin_price); ?></div>
-                        </div>
+            <div class="col-lg-3">
+                <div class="info-box bg-pink">
+                    <div class="icon">
+                        <i class="material-icons">work</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">1 COIN</div>
+                        <div class="number" ><?= "₹ ".str_replace('.0000', '', $coin_price); ?></div>
                     </div>
                 </div>
             </div>
             <div class="row clearfix">
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-grey hover-expand-effect">
-                        <div class="icon">
-                            <span class="chart chart-line">9,4,6,5,6,4,7,3</span>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-blue">
+                            <h2>
+                                Referral Income
+                            </h2>
                         </div>
-                        <div class="content">
-                            <div class="text">Return of interest total</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($roi_details['Total_Coins']) ? $roi_details['Total_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-grey hover-expand-effect">
-                        <div class="icon">
-                            <span class="chart chart-line">9,4,6,5,6,4,7,3</span>
-                        </div>
-                        <div class="content">
-                            <div class="text">Return of interest paid</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($roi_details['Total_Coins']) ? $roi_details['Paid_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-grey hover-expand-effect">
-                        <div class="icon">
-                            <span class="chart chart-line">9,4,6,5,6,4,7,3</span>
-                        </div>
-                        <div class="content">
-                            <div class="text">Return of interest remaining total</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($roi_details['Remaining_Coins']) ? $roi_details['Remaining_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-blue hover-expand-effect">
-                        <div class="icon">
-                            <div class="chart chart-bar">4,6,-3,-1,2,-2,4,6</div>
-                        </div>
-                        <div class="content">
-                            <div class="text">Referral income total</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($referral_details['Total_Coins']) ? $referral_details['Total_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-blue hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">account_balance</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Referral income paid</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($referral_details['Paid_Coins']) ? $referral_details['Paid_Coins'] : 0) ); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box-3 bg-blue hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">account_balance</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Referral income remaining</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($referral_details['Remaining_Coins']) ? $referral_details['Remaining_Coins'] : 0) ); ?></div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-green">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">store</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL COINS</div>
+                                            <div class="number" ><?= $number_of_referral_coins; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-green">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">account_balance_wallet</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL AMOUNT</div>
+                                            <div class="number" ><?= $total_referral_amount; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-red">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">store</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL WITHDRAW COINS</div>
+                                            <div class="number" ><?= $number_of_referral_debited_coins; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-red">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">store</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL WITHDRAW AMOUNT</div>
+                                            <div class="number" ><?= $total_referral_withdraw_amount; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="info-box bg-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">archive</i>
+            </div>
+            <?php 
+            $number_of_roi_coins = 0;
+            $number_of_roi_released_coins = 0;
+            $number_of_roi_debited_coins = 0;
+            
+            $total_roi_amount = 0;
+            $total_roi_released_amount = 0;
+            $total_roi_withdraw_amount = 0;
+            $get_user_coin_data = getUserCoin($userid);
+            foreach ($get_user_coin_data as $row) {
+                if($row['user_coins_status'] == 'accepted')
+                {
+                    $number_of_roi_coins = $number_of_roi_coins + $row['coins'];
+                }
+
+                if($row['user_coins_status'] == 'Bonus')
+                {
+                    $number_of_roi_coins = $number_of_roi_coins + $row['coins'];
+                }
+
+                if($row['user_coins_status'] == 'Credit')
+                {
+                    $number_of_roi_released_coins = $number_of_roi_released_coins + $row['coins'];
+                }
+
+                if($row['user_coins_status'] == 'Debit' || $row['user_coins_status'] == 'Debit Request')
+                {
+                    $number_of_roi_debited_coins = $number_of_roi_debited_coins + $row['coins'];
+                    $total_roi_withdraw_amount = $total_roi_withdraw_amount + $row['coins']*$row['coin_price'];
+                }
+            }
+
+            $number_of_roi_coins = $number_of_roi_coins - $number_of_roi_released_coins;
+            $total_roi_amount = $number_of_roi_coins*$coin_price;
+
+            $number_of_roi_released_coins = $number_of_roi_released_coins - $number_of_roi_debited_coins;
+            $total_roi_released_amount = $number_of_roi_released_coins*$coin_price;
+
+
+            ?>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-blue">
+                            <h2>
+                                ROI Income
+                            </h2>
                         </div>
-                        <div class="content">
-                            <div class="text">Bonus income total</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d",(isset($bonus_details['Total_Coins']) ? $bonus_details['Total_Coins'] : 0)); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box bg-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">archive</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Bonus income paid</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($bonus_details['Paid_Coins']) ? $bonus_details['Paid_Coins'] : 0)); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="info-box bg-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">archive</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Bonus income remaining</div>
-                            <div class="number"><?= "₹ ".sprintf("%02d", (isset($bonus_details['Remaining_Coins']) ? $bonus_details['Remaining_Coins'] : 0)); ?></div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-green">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">store</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL COINS</div>
+                                            <div class="number" ><?= $number_of_roi_coins; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-green">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">account_balance_wallet</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL AMOUNT</div>
+                                            <div class="number" ><?= $total_roi_amount; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-purple">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">store</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL RELEASED COINS</div>
+                                            <div class="number" ><?= $number_of_roi_released_coins; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-purple">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">store</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL RELEASED AMOUNT</div>
+                                            <div class="number" ><?= $total_roi_released_amount; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-red">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">store</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL WITHDRAW COINS</div>
+                                            <div class="number" ><?= $number_of_roi_debited_coins; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="info-box bg-red">
+                                        <!--<div class="icon">
+                                            <i class="material-icons">store</i>
+                                        </div>-->
+                                        <div class="content">
+                                            <div class="text">TOTAL WITHDRAW AMOUNT</div>
+                                            <div class="number" ><?= $total_roi_withdraw_amount; ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
