@@ -14,6 +14,7 @@
             
             $number_of_referral_coins = 0;
             $number_of_referral_debited_coins = 0;
+            $total_referral_coins = 0;
             
             $total_referral_amount = 0;
             $total_referral_withdraw_amount = 0;
@@ -22,6 +23,7 @@
                 if($row['payment_status'] == 'Credit')
                 {
                     $number_of_referral_coins = $number_of_referral_coins + $row['coins'];
+                    $total_referral_coins = $total_referral_coins + $row['coins'];
                 }
 
                 if($row['payment_status'] == 'Debit' || $row['payment_status'] == 'Debit Request')
@@ -43,6 +45,17 @@
                     <div class="content">
                         <div class="text">1 COIN</div>
                         <div class="number" ><?= "₹ ".str_replace('.0000', '', $coin_price); ?></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="info-box bg-purple">
+                    <div class="icon">
+                        <i class="material-icons">shopping_cart</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">TOTAL EARN COINS</div>
+                        <div class="number" ><?= str_replace('.0000', '', $total_referral_coins); ?></div>
                     </div>
                 </div>
             </div>

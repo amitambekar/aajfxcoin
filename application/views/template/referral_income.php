@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <div class="info-box bg-blue">
+                                <div class="info-box bg-green">
                                     <!--<div class="icon">
                                         <i class="material-icons">store</i>
                                     </div>-->
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <div class="info-box bg-blue">
+                                <div class="info-box bg-green">
                                     <!--<div class="icon">
                                         <i class="material-icons">account_balance_wallet</i>
                                     </div>-->
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <div class="info-box bg-orange">
+                                <div class="info-box bg-red">
                                     <!--<div class="icon">
                                         <i class="material-icons">store</i>
                                     </div>-->
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <div class="info-box bg-orange">
+                                <div class="info-box bg-red">
                                     <!--<div class="icon">
                                         <i class="material-icons">store</i>
                                     </div>-->

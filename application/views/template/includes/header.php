@@ -105,11 +105,11 @@
                             <span>Incentives</span>
                         </a>
                         <ul class="ml-menu">
-                            <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == ''){ echo 'class="active"'; } ?>>
+                            <?php /*?><li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == ''){ echo 'class="active"'; } ?>>
                                 <a href="<?php echo site_url(); ?>incentives">
                                     <span>Incentives dashboard</span>
                                 </a>
-                            </li>
+                            </li><?php */?>
                             <li <?php if(isset($controller_name) && $controller_name == 'incentives' && $function_name == 'referral_income'){ echo 'class="active"'; } ?>>
                                 <a href="<?php echo site_url(); ?>incentives/referral_income">
                                     <span>Referral Income</span>
