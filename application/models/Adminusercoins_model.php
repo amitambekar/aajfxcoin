@@ -7,8 +7,16 @@ class Adminusercoins_model extends CI_Model
         parent::__construct();	
     }
     
-    function deleteUserCoinsRequest($user_coins_id){
+    function deleteReferralCoinsRequest($referral_income_id){
 		$this->db->trans_start();
+        $this->db->where('referral_income_id', $referral_income_id);
+        $res = $this->db->delete('referral_income'); 
+        $this->db->trans_complete();
+        return true;
+    }
+
+    function deleteUserCoinsRequest($user_coins_id){
+        $this->db->trans_start();
         $this->db->where('id', $user_coins_id);
         $res = $this->db->delete('user_coins'); 
         $this->db->trans_complete();

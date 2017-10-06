@@ -14,6 +14,20 @@ angular.module("MyApp", []).controller("MyController", function($scope,$http) {
         }
     }
 
+    $scope.deleteReferralCoinsRequest = function(referral_income_id)
+    {
+        if(confirm("Do you want to delete this Referral Coins Request?"))
+        {
+            var success_cb = function(data)
+            {
+                if(data.status == "success")
+                {
+                    $('#row-id-'+referral_income_id).remove();
+                }
+            }
+            SSK.site_call("AJAX",window._site_url+"admin_user_coins/deleteReferralCoinsRequest",{"referral_income_id":referral_income_id}, success_cb);
+        }
+    }
 
     $scope.userCoinsRequestAction = function(user_coins_id,userid,status)
     {

@@ -10,7 +10,7 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header bg-red">
+                    <div class="header bg-blue">
                         <h2>
                             Referral Coins Sell Requests
                         </h2>
@@ -54,10 +54,10 @@
                                             <td><?= $row['coins']*$row['coin_price'];?></td>
                                             <td><?= $row['payment_details'];?></td>
                                             <td><?= $row['payment_type'];?></td>
-                                            <td><?= $row['created_date'];?></td>
+                                            <td><?= $row['referral_created_date'];?></td>
                                             <td>
                                                 <a href="javascript:void(0);" class="deletePackage" ng-click="sell_coins_modal(<?php echo $row['referral_income_id']; ?>,<?php echo $row['userid']; ?>)">Accept</a>
-                                                <a href="javascript:void(0);" class="deletePackage" ng-click="deleteUserCoinsRequest(<?php echo $row['referral_income_id']; ?>)">Delete</a>
+                                                <a href="javascript:void(0);" class="deletePackage" ng-click="deleteReferralCoinsRequest(<?php echo $row['referral_income_id']; ?>)">Delete</a>
                                             </td>
                                         </tr>
                                     <?php } ?>

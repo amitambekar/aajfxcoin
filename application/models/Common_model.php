@@ -413,7 +413,7 @@ class Common_model extends CI_Model
     function getReferralIncome($userid = 0,$filters = array())
     {
     	$this->db->trans_start();
-    	$this->db->select('*,referral_income.status as payment_status');	
+    	$this->db->select('*,referral_income.status as payment_status,referral_income.created_date as referral_created_date');	
     	
 		if($userid > 0)
 		{

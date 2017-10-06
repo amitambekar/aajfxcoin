@@ -61,7 +61,7 @@
                     <img src="<?= imagePath($profile_image,'profile',48,48); ?>" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $name; ?></div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $name.' ('.$username.')'; ?></div>
                     <div class="email"><?= $email;?></div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -204,11 +204,6 @@
                                     <span>Payment Details</span>
                                 </a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="<?php echo site_url(); ?>admin_payout">
-                                            <span>Payout</span>
-                                        </a>
-                                    </li>
                                     <li>
                                         <a href="<?php echo site_url(); ?>admin_user_payment_details">
                                             <span>Payment dashboard</span>

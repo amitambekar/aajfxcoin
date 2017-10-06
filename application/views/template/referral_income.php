@@ -11,7 +11,7 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header bg-red">
+                    <div class="header bg-blue">
                         <h2>
                             Referral Income
                         </h2>
@@ -143,7 +143,7 @@
                                         <td><?= ($row['payment_type']) ? $row['payment_type'] : '-';?></td>
                                         <td><?= ($row['description'] !='') ? $row['description'] : '-'; ?></td>
                                         <td><?= $row['payment_status']; ?></td>
-                                        <td><?= date("d-M-Y g:i:s A",strtotime($row['created_date']));?></td>
+                                        <td><?= date("d-M-Y g:i:s A",strtotime($row['referral_created_date']));?></td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>

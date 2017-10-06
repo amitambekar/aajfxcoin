@@ -10,7 +10,7 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header bg-red">
+                    <div class="header bg-blue">
                         <h2>
                             ROI & Purchased Coins Sell Requests
                         </h2>

@@ -51,6 +51,14 @@ class Admin_user_coins extends CI_Controller {
 		$this->load->view('template/admin/referral_sell_requests',$data);
 	}
 
+	public function referral_accpepted_sell_requests()
+	{
+		$session_data = $this->session->userdata;
+		$data = array();
+		$data['session_data'] = $session_data;
+		$this->load->view('template/admin/referral_accpepted_sell_requests',$data);
+	}
+	
 	function deleteUserCoinsRequest(){
 		if($this->input->post())
 		{
@@ -67,6 +75,37 @@ class Admin_user_coins extends CI_Controller {
 	        if(count($error_array) == 0 )
 	        {
 		        $this->Adminusercoins_model->deleteUserCoinsRequest($user_coins_id);	
+				$status = 'success';
+			    $message = 'Request Deleted successfully';	
+			    $status_code = 200;
+	        }else
+	        {
+	        	$status = 'error';
+	        	$message = $error_array;
+	        	$status_code = 501;
+	        }
+			
+	        $response = array('status'=>$status,'message'=>$message);
+			echo responseObject($response,$status_code);	
+		}
+    }
+
+    function deleteReferralCoinsRequest(){
+		if($this->input->post())
+		{
+			$status = '';
+			$message = '';
+			$referral_income_id = $this->input->post('referral_income_id');
+
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('referral_income_id', 'Referral Iincome ID', 'required');
+			
+			$this->form_validation->run();
+	        $error_array = $this->form_validation->error_array();
+
+	        if(count($error_array) == 0 )
+	        {
+		        $this->Adminusercoins_model->deleteReferralCoinsRequest($referral_income_id);	
 				$status = 'success';
 			    $message = 'Request Deleted successfully';	
 			    $status_code = 200;
