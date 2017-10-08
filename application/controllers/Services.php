@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Testimonials extends CI_Controller {
+class Services extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,6 +23,6 @@ class Testimonials extends CI_Controller {
 		$session_data = $this->session->userdata;
 		$data = array();
 		$data['session_data'] = $session_data;
-		$this->load->view('template2/testimonials',$data);
+		$this->load->view('template2/services',$data);
 	}
 }

@@ -46,8 +46,8 @@ function send_email($data = array()) {
 		$from = $data['from']['email'];
 		$name = $data['from']['name'];			
 	}else{
-		$from = "info@onlinetradinginstitute.in";
-		$name = "Online Trading Institute";						
+		$from = "info@aajfxcoin.com";
+		$name = "AajFx COIN";						
 	}
 
 
@@ -101,7 +101,7 @@ function responseObject($response = array(),$status_code=200)
 	return json_encode($response);
 }
 
-function imagePath($path,$image_type,$width = 70,$height=70)
+function imagePath($path,$image_type,$width = 70,$height=70,$timthumb=true)
 {
 	if($image_type == 'profile')
 	{
@@ -120,7 +120,13 @@ function imagePath($path,$image_type,$width = 70,$height=70)
 	{
 		$w = "&w=".$width;
 	}
-	return base_url('timthumb.php?src='.base_url($path).$w.$h);
+	if($timthumb ==true)
+	{
+		return base_url('timthumb.php?src='.base_url($path).$w.$h);	
+	}else
+	{
+		return base_url().$path;	
+	}
 	//return base_url('uploads/'.$path);
 }
 

@@ -1,95 +1,52 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Sign In | AajfxCOIN</title>
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
     <!-- Bootstrap Core Css -->
     <link href="<?= base_url(); ?>assets/template/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-    <link href="<?= base_url(); ?>assets/template/plugins/node-waves/waves.css" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="<?= base_url(); ?>assets/template/plugins/animate-css/animate.css" rel="stylesheet" />
-
-    <!-- Custom Css -->
-    <link href="<?= base_url(); ?>assets/template/css/style.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/template/css/login-soft.css" rel="stylesheet" type="text/css"/>
 </head>
 <script type="text/javascript">
         window._site_url = '<?php echo site_url(); ?>';
 </script>
-<body class="login-page" ng-app="MyApp" ng-controller="MyController" style="background-image: url(<?= base_url(); ?>assets/template/images/coin/background.jpg);background-repeat:no;">
-    <div class="login-box">
-        <div class="logo">
-            <a href="javascript:void(0);">Aajfx<b>COIN</b></a>
-            <!--<small>Admin BootStrap Based - Material Design</small>-->
-        </div>
-        <div class="card" id="login_cart">
-            <div class="body">
-                <form id="sign_in" method="POST">
-                    <div class="msg">Sign in to start your session</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" ng-model="login_username" placeholder="Username" />
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" ng-model="login_password" placeholder="Password" />
-                        </div>
-                    </div>
-                    <button class="btn btn-block bg-pink waves-effect" type="button" ng-click="login()">SIGN IN</button>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            <a href="<?= site_url(); ?>register">Register Now!</a>
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="<?= site_url(); ?>login/forgot_password">Forgot Password?</a>
-                        </div>
-                    </div>
-                </form>
+<body class="login" ng-app="MyApp" ng-controller="MyController" style="background-color:#76889e;">
+    <div class="logo">
+        <h2 style="color: #eee;">AAJFX<span style="color:#c51048;">COIN</span></h2>
+    </div>
+    <div class="content">
+        <div class="login-form" id="login_cart">
+            <h3 class="form-title">Login to your account</h3>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="login_username" placeholder="Username" />
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" ng-model="login_password" placeholder="Password" />
+            </div>
+            <button class="btn btn-block bg-pink waves-effect" type="button" ng-click="login()">SIGN IN</button>
+            <div class="row m-t-15 m-b--20">
+                <div class="col-xs-6">
+                    <a href="<?= site_url(); ?>register">Register Now!</a>
+                </div>
+                <div class="col-xs-6 align-right">
+                    <a href="<?= site_url(); ?>login/forgot_password">Forgot Password?</a>
+                </div>
             </div>
         </div>
 
-        <div class="card" id="otp_cart" style="display:none;">
-            <div class="body">
-                <form id="sign_in" method="POST">
-                    <div class="msg">Login Verification</div>
-                    <div class="input-group" style="display:none;">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" ng-model="r_username" placeholder="Username" />
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">vpn_key</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" ng-model="otp" placeholder="OTP" />
-                        </div>
-                    </div>
-                    <button class="btn btn-primary bg-pink waves-effect" type="button" ng-click="check_otp()">Check OTP</button>
-                    <button class="btn btn-success bg-pink waves-effect" type="button" ng-click="resend_otp()">Resend OTP</button>
-                </form>
+        <div class="login-form" id="otp_cart" style="display:none;">
+            <h3 class="form-title">Login Verification</h3>
+            <div class="from-group" style="display:none;">
+                <input type="text" class="form-control" ng-model="r_username" placeholder="Username" />
             </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="otp" placeholder="OTP" />
+            </div>
+            <button class="btn btn-primary bg-pink waves-effect" type="button" ng-click="check_otp()">Check OTP</button>
+            <button class="btn btn-success bg-pink waves-effect" type="button" ng-click="resend_otp()">Resend OTP</button>
         </div>
     </div>
     <!-- Large Size -->
@@ -116,16 +73,15 @@
 
     <!-- Bootstrap Core Js -->
     <script src="<?= base_url(); ?>assets/template/plugins/bootstrap/js/bootstrap.js"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="<?= base_url(); ?>assets/template/plugins/node-waves/waves.js"></script>
-
-    <!-- Validation Plugin Js -->
-    <script src="<?= base_url(); ?>assets/template/plugins/jquery-validation/jquery.validate.js"></script>
-
-    <!-- Custom Js -->
-    <script src="<?= base_url(); ?>assets/template/js/admin.js"></script>
-    <script src="<?= base_url(); ?>assets/template/js/pages/examples/sign-in.js"></script>
+    <script src="<?= base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
+<script>
+jQuery(document).ready(function() {     
+       $.backstretch(["<?= imagePath('assets/template/images/coin/1.jpg','',1100,0); ?>","<?= imagePath('assets/template/images/coin/2.jpg','',1100,0); ?>"], {
+          fade: 1000,
+          duration: 8000
+    }
+);
+});
+</script>
 </body>
-
 </html>

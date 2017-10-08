@@ -19,10 +19,11 @@
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 </head>
-
-<body>
+<script type="text/javascript">
+    window._site_url = '<?php echo site_url(); ?>';
+</script>
+<body ng-app="MyApp" ng-controller="MyController">
 <div class="page-wrapper">
-
     <!-- Preloader -->
     <div class="preloader"></div> 
 	
@@ -36,13 +37,13 @@
             	<div class="top-left pull-left">
                     
                     <ul class="links-nav clearfix">
-                        <li class="social-links">
+                        <!--<li class="social-links">
                         	<a href="#"><span class="fa fa-facebook-f"></span></a>
                             <a href="#"><span class="fa fa-google-plus"></span></a>
-                            <!--<a href="#"><span class="fa fa-twitter"></span></a>
+                            <a href="#"><span class="fa fa-twitter"></span></a>
                             <a href="#"><span class="fa fa-linkedin"></span></a>
-                            <a href="#"><span class="fa fa-pinterest-p"></span></a>-->
-                        </li>
+                            <a href="#"><span class="fa fa-pinterest-p"></span></a>
+                        </li>-->
                     </ul>
                     
                 </div>
@@ -80,15 +81,7 @@
                             <span class="icon-bar"></span>
                             </button>
                         </div>
-
-                        <div class="navbar-collapse collapse clearfix">
-                            <ul class="navigation clearfix">
-                                <li class="current"><a href="<?php echo site_url(); ?>">Home</a></li>
-								<li><a href="<?php echo site_url(); ?>testimonials">Testimonials</a></li>
-                                <li><a href="<?php echo site_url(); ?>about_us">About Us</a></li>
-                                <li><a href="<?php echo site_url(); ?>contact_us">Contact Us</a></li>
-                            </ul>
-                        </div>
+                        <?php $this->view('template2/includes/menu'); ?>
                     </nav>
                 </div>
                     
@@ -117,56 +110,7 @@
                             </button>
                         </div>
 
-                        <div class="navbar-collapse collapse clearfix">
-                            <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="#">Home</a>
-                                    <ul>
-                                        <li><a href="index.html">Homepage One</a></li>
-                                        <li><a href="index-2.html">Homepage Two</a></li>
-                                        <li><a href="index-3.html">Homepage Three</a></li>
-                                        <li><a href="index-4.html">Homepage Four</a></li>
-                                        <li><a href="index-5.html">Homepage Five</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li class="dropdown"><a href="#">Services</a>
-                                    <ul>
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="services-single.html">Financial Advise</a></li>
-                                        <li><a href="services-single.html">Google Analyze</a></li>
-                                        <li><a href="services-single.html">Investment Banking</a></li>
-                                        <li><a href="services-single.html">Sales &amp; Trading</a></li>
-                                        <li><a href="services-single.html">Market Research</a></li>
-                                        <li><a href="services-single.html">Business Consulting</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">News</a>
-                                    <ul>
-                                        <li><a href="news.html">News</a></li>
-                                        <li><a href="news-detail.html">News Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Pages</a>
-                                    <ul>
-                                        <li><a href="team.html">Team</a></li>
-                                        <li><a href="faq.html">Faq</a></li>
-                                        <li><a href="error-page.html">404 Page</a></li>
-                                        <li><a href="testimonial.html">Testimonials</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li class="dropdown"><a href="#">Shop</a>
-                                    <ul>
-                                        <li><a href="shop.html">Our Shop</a></li>
-                                        <li><a href="shop-single.html">Item Details</a></li>
-                                        <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                    </ul>
-                                </li>
-                                
-                                <li><a href="contact.html">Contact Us</a></li>
-                            </ul>
-                        </div>
+                        <?php $this->view('template2/includes/menu'); ?>
                     </nav><!-- Main Menu End-->
                 </div>
 

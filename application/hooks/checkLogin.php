@@ -8,7 +8,7 @@ function isLogin()
 	$controller_name = $CI->uri->segment(1);
 	$role_id = @$CI->session->userdata['logged_in']['role_id'];
 	//$frontend_pages = array("","home","bankers","contact_us","about_us","faqs","testimonials","login","register");
-	$frontend_pages = array("login","register");
+	$frontend_pages = array("","home","services","legal","gallery","login","register","about_us","contact_us","faqs","testimonials");
 	if(!in_array($controller_name, $frontend_pages)  && $CI->session->userdata('logged_in') == '')
 	{
 		redirect('login');
