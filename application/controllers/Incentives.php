@@ -58,6 +58,7 @@ class Incentives extends CI_Controller {
 			$message = '';
 			$session_data = $this->session->userdata;
 			$userid = $session_data['logged_in']['userid'];
+			$created_date = config_item('current_date');
 		
 			$coins = $this->input->post('coins');
 			$payment_details = $this->input->post('payment_details');
@@ -78,10 +79,14 @@ class Incentives extends CI_Controller {
 				$error_array['coins'] = 'Not enough coins to sell.';	
 			}
 
+			if($created_date < date("2018-01-26"))
+			{
+				$error_array['coins'] = 'You can not sell coins before 26 January 2017.';
+			}
+
 			if(count($error_array) == 0 )
 	        {
 	        	$this->load->model('Coins_model');
-				$created_date = config_item('current_date');
 				$coin_price_data = getCoinPrice(true);
 				$coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);	
 				$amount = $coins * $coin_price;
