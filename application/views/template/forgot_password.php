@@ -4,57 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Forgot Password | Bootstrap Based Admin Template - Material Design</title>
+    <title>Forgot Password | AajFxCoin</title>
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
     <!-- Bootstrap Core Css -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
     <link href="<?= base_url(); ?>assets/template/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-    <link href="<?= base_url(); ?>assets/template/plugins/node-waves/waves.css" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="<?= base_url(); ?>assets/template/plugins/animate-css/animate.css" rel="stylesheet" />
-
-    <!-- Custom Css -->
-    <link href="<?= base_url(); ?>assets/template/css/style.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/template/css/login-soft.css" rel="stylesheet" type="text/css"/>
 </head>
 <script type="text/javascript">
         window._site_url = '<?php echo site_url(); ?>';
 </script>
-<body class="fp-page" ng-app="MyApp" ng-controller="MyController">
-    <div class="fp-box">
-        <div class="logo">
-            <a href="javascript:void(0);">Aajfx<b>COIN</b></a>
-            <!--<small>Admin BootStrap Based - Material Design</small>-->
-        </div>
-        <div class="card">
-            <div class="body">
-                <form id="forgot_password" method="POST">
-                    <div class="msg">
-                        Enter your username that you used to register. We'll send you an email with your username and a
-                        link to reset your password.
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" ng-model="forgot_username" placeholder="Username" />
-                        </div>
-                    </div>
+<body class="login" ng-app="MyApp" ng-controller="MyController" style="background-color:#76889e;">
+    <div class="logo">
+        <h2 style="color: #eee;">AAJFX<span style="color:#c51048;">COIN</span></h2>
+    </div>
+    <div class="content">
+        <div class="body">
+            <div id="forgot_password" class="login-form">
+                <div class="msg">
+                    Enter your username that you used to register. We'll send you an email with your username and a
+                    link to reset your password.
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="forgot_username" placeholder="Username" />
+                </div>
+                <button class="btn btn-block bg-pink waves-effect" type="button" ng-click="forgot_password()">RESET MY PASSWORD</button>
 
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="buttoon" ng-click="forgot_password()">RESET MY PASSWORD</button>
-
-                    <div class="row m-t-20 m-b--5 align-center">
-                        <a href="<?= site_url(); ?>login">Sign In!</a>
-                    </div>
-                </form>
+                <button class="btn btn-block bg-pink waves-effect" type="button" onclick="window.location.href='<?= site_url(); ?>login'">Sign In</button>
+                
             </div>
         </div>
     </div>
@@ -82,16 +60,15 @@
 
     <!-- Bootstrap Core Js -->
     <script src="<?= base_url(); ?>assets/template/plugins/bootstrap/js/bootstrap.js"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="<?= base_url(); ?>assets/template/plugins/node-waves/waves.js"></script>
-
-    <!-- Validation Plugin Js -->
-    <script src="<?= base_url(); ?>assets/template/plugins/jquery-validation/jquery.validate.js"></script>
-
-    <!-- Custom Js -->
-    <script src="<?= base_url(); ?>assets/template/js/admin.js"></script>
-    <script src="<?= base_url(); ?>assets/template/js/pages/examples/forgot-password.js"></script>
+    <script src="<?= base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script>
+    jQuery(document).ready(function() {     
+           $.backstretch(["<?= imagePath('assets/template/images/coin/1.jpg','',1100,0); ?>","<?= imagePath('assets/template/images/coin/2.jpg','',1100,0); ?>"], {
+              fade: 1000,
+              duration: 8000
+        }
+    );
+    });
+    </script>
 </body>
-
 </html>
