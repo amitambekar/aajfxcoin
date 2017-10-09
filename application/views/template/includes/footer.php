@@ -14,11 +14,61 @@
         </div>
     </div>
 </div>
+<!-- Large Size -->
+<div class="modal fade" id="timeout" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-orange">
+                <h4 class="modal-title" id="largeModalLabel">Session About To Timeout</h4>
+            </div>
+            <div class="modal-body">
+                <p>You will be automatically logged out in 1 minute.<br/>
+                To remain logged in move your mouse over this window.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 $(function () {
     $("body").addClass('theme-blue');
 });
+
+// Set timeout variables.
+var timoutWarning = 120000;
+var timoutNow = 180000;
+var logoutUrl = '<?= site_url(); ?>logout'; // URL to logout page.
+
+var warningTimer;
+var timeoutTimer;
+
+// Start timers.
+function StartTimers() {
+    warningTimer = setTimeout("IdleWarning()", timoutWarning);
+    timeoutTimer = setTimeout("IdleTimeout()", timoutNow);
+}
+
+// Reset timers.
+function ResetTimers() {
+    clearTimeout(warningTimer);
+    clearTimeout(timeoutTimer);
+    StartTimers();
+    $("#timeout").modal('hide');
+}
+
+// Show idle timeout warning dialog.
+function IdleWarning() {
+    $("#timeout").modal('show');
+}
+
+// Logout the user.
+function IdleTimeout() {
+    window.location = logoutUrl;
+}
 </script>
+
 <!-- Bootstrap Core Js -->
 <script src="<?= base_url(); ?>assets/template/plugins/bootstrap/js/bootstrap.js"></script>
 

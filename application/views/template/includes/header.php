@@ -1,5 +1,5 @@
 <?php $this->view('template/includes/head'); ?>
-<body class="theme-red" ng-app="MyApp" ng-controller="MyController">
+<body class="theme-red" ng-app="MyApp" ng-controller="MyController" onload="StartTimers();" onmousemove="ResetTimers();">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
