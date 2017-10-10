@@ -1,6 +1,6 @@
 <?php $this->view('template2/includes/header'); ?>
     <!--Page Title-->
-    <section class="page-title" style="background-image: url(<?= imagePath('assets/template2/aajfxcoin/team.jpg','',1000,0); ?>); background-position: 0 79px;">
+    <section class="page-title" style="background-image: url(<?= imagePath('assets/template2/aajfxcoin/team.jpg','',1000,0); ?>); background-position: 0 108px;">
         <div class="auto-container">
             <h1>About Us</h1>
         </div>
@@ -68,9 +68,9 @@
                 </div>
                 <div class="staff-member col-md-12 col-sm-12 col-xs-12">
                     <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        <div class="lower-content">
+                        <div class="lower-content" style="height:345px;">
                             <figure class="image-box">
-                                <img src="<?= imagePath('assets/template2/aajfxcoin/rajesh.JPG','',970,666); ?>" alt="" />
+                                <img src="<?= imagePath('assets/template2/aajfxcoin/rajesh1.JPG','',500,500); ?>" alt="" />
                             </figure>
                             <h3><a href="#">Mr. Rajesh Menezes</a></h3>
                             <div class="designation">Marketing Head</div>
