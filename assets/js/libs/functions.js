@@ -134,13 +134,16 @@ function fail_callback(data)
         window._error_log[key]=value;
     });
     
-    var error_string = '<ul>';
+    var error_string = '';
     console.log(window._error_log)
     $.each(window._error_log, function( key, value ) {
         error_string = error_string + '<li>'+value+'</li>';
     });
-    error_string = error_string + '</ul>';
-    alert_box(error_string,'error');
+    if(error_string.length > 0)
+    {
+        error_string = '<ul>' + error_string + '</ul>';
+        alert_box(error_string,'error');    
+    }
 }
 
 SSK = {    
