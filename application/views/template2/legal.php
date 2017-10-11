@@ -6,13 +6,16 @@
         </div>
     </section>
     <!--End Page Title-->
-    
-    <!--Contact Section-->
-    <section class="contact-section">
+
+    <!-- Projects Section-->
+    <section class="projects">
         <div class="auto-container">
-            <div class="sec-title">
-                <h2>Coming <span class="theme_color">Soon</span></h2>
+            <div class="row">
+                <center>
+                    <iframe src="<?php echo site_url(); ?>/assets/template2/aajfxcoin/CERTIFICATE_OF_INCORPORATION.PDF#toolbar=0&navpanes=0&statusbar=0&view=Fit;readonly=true; disableprint=true;" style="width:800px;height:1020px;border: none;align:center;" ></iframe>                    
+                </center>
             </div>
         </div>
     </section>
+    <!--End Projects Section-->
 <?php $this->view('template2/includes/footer'); ?>

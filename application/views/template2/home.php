@@ -5,8 +5,8 @@
         <div class="tp-banner-container">
             <div class="tp-banner">
                 <ul>
-					<li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="<?= imagePath('assets/template2/aajfxcoin/handshake.jpg','',1200,0); ?>"  data-saveperformance="off"  data-title="Awesome Title Here">
-                    <img src="<?= imagePath('assets/template2/aajfxcoin/handshake.jpg','',1200,0); ?>"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+					<li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="<?= imagePath('assets/template2/aajfxcoin/bitcoin.jpg','',1200,0); ?>"  data-saveperformance="off"  data-title="Awesome Title Here">
+                    <img src="<?= imagePath('assets/template2/aajfxcoin/bitcoin.jpg','',1200,0); ?>"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
                     <div class="tp-caption sfl sfb tp-resizeme"
                     data-x="left" data-hoffset="15"
@@ -36,7 +36,7 @@
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn">
-                    	<div class="text light">We’re a team of accredited finance expert and fund managers with 20 years expertise in the trade.<br> We are well equipped to handle the  financial complexities and have<br> an excellent comprehension of your financial problems.</div>
+                    	<div class="text light"><b>We’re a team of accredited finance expert and fund managers with 20 years expertise in the trade.<br> We are well equipped to handle the  financial complexities and have<br> an excellent comprehension of your financial problems.</b></div>
                     </div>
 
                     <div class="tp-caption sfl sfb tp-resizeme"

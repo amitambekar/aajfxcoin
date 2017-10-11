@@ -1,6 +1,6 @@
 <?php $this->view('template2/includes/header'); ?>
     <!--Page Title-->
-    <section class="page-title" style="background-image: url(<?= imagePath('assets/template2/aajfxcoin/team.jpg','',1000,0); ?>); background-position: 0 108px;">
+    <section class="page-title" style="background-image: url(<?= imagePath('assets/template2/aajfxcoin/team.jpg','',1000,0); ?>); background-position: 0 117px;height:400px;">
         <div class="auto-container">
             <h1>About Us</h1>
         </div>
