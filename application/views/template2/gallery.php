@@ -17,7 +17,7 @@
                         <figure class="hover-style1-img">
                             <img src="<?= imagePath('assets/template2/aajfxcoin/video.jpg','',1000,666); ?>" alt="image">
                             <div class="hover-style1-view">
-                                <a href="https://www.youtube.com/watch?v=Ybt9ScBSHss" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                <a href="https://www.youtube.com/watch?v=48BZyw7CZkY" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
                                 </a>                                
                             </div>
                         </figure>
