@@ -15,7 +15,7 @@
                 <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
                     <div class="inner hover-style1">
                         <figure class="hover-style1-img">
-                            <img src="<?= imagePath('assets/template2/aajfxcoin/video.jpg','',1000,666,false); ?>" alt="image">
+                            <img src="<?= imagePath('assets/template2/aajfxcoin/video.jpg','',1000,666); ?>" alt="image">
                             <div class="hover-style1-view">
                                 <a href="https://www.youtube.com/watch?v=Ybt9ScBSHss" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
                                 </a>                                
@@ -32,7 +32,7 @@
                 <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
                     <div class="inner hover-style1">
                         <figure class="hover-style1-img">
-                            <img src="<?= imagePath('assets/template2/aajfxcoin/video.jpg','',1000,666,false); ?>" alt="image">
+                            <img src="<?= imagePath('assets/template2/aajfxcoin/video.jpg','',1000,666); ?>" alt="image">
                             <div class="hover-style1-view">
                                 <a href="https://www.youtube.com/watch?v=mH1D5KedBgw" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
                                 </a>                                
