@@ -81,7 +81,7 @@ class Incentives extends CI_Controller {
 
 			if($created_date < date("2018-01-26"))
 			{
-				$error_array['coins'] = 'You can not sell coins before 26 January 2017.';
+				$error_array['coins'] = 'You can not sell coins before 26 January 2018.';
 			}
 
 			if(count($error_array) == 0 )
