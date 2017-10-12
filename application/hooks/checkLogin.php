@@ -10,10 +10,10 @@ function isLogin()
 	//$frontend_pages = array("","home","bankers","contact_us","about_us","faqs","testimonials","login","register");
 	$frontend_pages = array("","home","services","legal","gallery","login","register","about_us","contact_us","faqs","testimonials");
 	
-	if(in_array($controller_name, $frontend_pages))
+	/*if(in_array($controller_name, $frontend_pages))
 	{
 		$CI->output->cache(60);
-	}
+	}*/
 
 	if(!in_array($controller_name, $frontend_pages)  && $CI->session->userdata('logged_in') == '')
 	{
