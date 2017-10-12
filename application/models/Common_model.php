@@ -93,7 +93,7 @@ class Common_model extends CI_Model
 		foreach($query->result() as $row)
 		{
 			$coin_list = array();
-			if($userid > 0 || $username != '')
+			/*if($userid > 0 || $username != '')
 			{
 				$this->db->select('*');
 		    	$this->db->where('user_coins.userid',$row->userid);
@@ -102,7 +102,7 @@ class Common_model extends CI_Model
 		    	{
 		    		$coin_list[] = (array)$row1;
 		    	}				
-			}
+			}*/
 			$data = array(
 							'userid'=>$row->userid,
 							'username'=>$row->username,
