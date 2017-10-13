@@ -123,6 +123,12 @@
         </div>
     </section>
     
+    <style>
+    .inner-box
+    {
+        height:483px;
+    }
+    </style>
     <!-- services -->
     <section class="services-section style-3" data-parallax="scroll" data-image-src="<?= imagePath('assets/template2/aajfxcoin/discussion.jpg','',1200,0); ?>">
         <div class="auto-container">
@@ -138,6 +144,7 @@
                             <img src="<?= imagePath('assets/template2/aajfxcoin/compounding.jpg','',200,180); ?>" style="width:200px;height:180px;">
                             <h3><a href="services-single.html">Trader Package</a></h3>
                             <div class="text">Trader package is the professional asset management of various securities and other assets in order to meet specified investment goals for the benefit of trader.</div>
+                            <a href="<?= site_url(); ?>services/trader" class="theme-btn btn-style-three">Read More</a>
                         </div>
                     </div>
                     <div class="service-block-four col-md-4 col-sm-6 col-xs-12">

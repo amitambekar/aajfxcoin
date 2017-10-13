@@ -25,4 +25,12 @@ class Services extends CI_Controller {
 		$data['session_data'] = $session_data;
 		$this->load->view('template2/services',$data);
 	}
+
+	public function trader()
+	{
+		$session_data = $this->session->userdata;
+		$data = array();
+		$data['session_data'] = $session_data;
+		$this->load->view('template2/trader',$data);
+	}
 }

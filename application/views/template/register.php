@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Register | AajfxCOIN</title>
     <!-- Favicon-->
-    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?= base_url(); ?>assets/template/images/favicon.ico" type="image/x-icon">
     <!-- Bootstrap Core Css -->
     <link href="<?= base_url(); ?>assets/template/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/template/css/login-soft.css" rel="stylesheet" type="text/css"/>

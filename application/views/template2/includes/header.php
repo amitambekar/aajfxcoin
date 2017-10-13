@@ -67,7 +67,7 @@
             	<div class="clearfix">
 
                 	<div class="pull-left logo-outer">
-                    	<div class="logo"><a href="index.html"><img src="<?= imagePath('assets/template2/images/logo.png','',0,45) ?>" alt="" title="Bolton"></a></div>
+                    	<div class="logo"><a href="<?= site_url(); ?>"><img src="<?= imagePath('assets/template2/images/logo.png','',0,45) ?>" alt="" title="Bolton"></a></div>
                     </div>
 
                    <div class="nav-outer pull-right clearfix">
@@ -94,7 +94,7 @@
         	<div class="auto-container clearfix">
             	<!--Logo-->
             	<div class="logo pull-left">
-                	<a href="index.html" class="img-responsive"><img src="<?= imagePath('assets/template2/images/logo.png','',0,45) ?>" alt="Bolton"></a>
+                	<a href="<?= site_url(); ?>" class="img-responsive"><img src="<?= imagePath('assets/template2/images/logo.png','',0,45) ?>" alt="Bolton"></a>
                 </div>
 
                 <!--Right Col-->

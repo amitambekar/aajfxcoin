@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Forgot Password | AajFxCoin</title>
     <!-- Favicon-->
-    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?= base_url(); ?>assets/template/images/favicon.ico" type="image/x-icon">
     <!-- Bootstrap Core Css -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
     <link href="<?= base_url(); ?>assets/template/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
