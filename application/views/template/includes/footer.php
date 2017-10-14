@@ -37,8 +37,8 @@ $(function () {
 });
 
 // Set timeout variables.
-var timoutWarning = 120000;
-var timoutNow = 180000;
+var timoutWarning = 1200000;
+var timoutNow = 1800000;
 var logoutUrl = '<?= site_url(); ?>logout'; // URL to logout page.
 
 var warningTimer;
