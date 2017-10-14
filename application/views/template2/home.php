@@ -113,8 +113,8 @@
                     <!--video-box-->
                     <div class="video-image-box">
                         <figure class="image">
-                        	<img src="<?= imagePath('assets/template2/images/gallery/10.jpg','',0,0); ?>" alt="">
-                            <a href="https://www.youtube.com/watch?v=Ybt9ScBSHss" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                        	<img src="https://i.ytimg.com/vi/logOXhnD47U/hqdefault.jpg" alt="">
+                            <a href="https://www.youtube.com/watch?v=logOXhnD47U" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
                         </figure>                        
                     </div>
                 </div>
