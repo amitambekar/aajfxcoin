@@ -44,6 +44,210 @@
                         </div>
                     </div>
                 </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/wW3Hf_XcwRM/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=wW3Hf_XcwRM" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/kBnwP-YfHjQ/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=kBnwP-YfHjQ" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/lFGfaOqZTGo/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=lFGfaOqZTGo" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/tCnaEZ7xqts/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=tCnaEZ7xqts" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/tnnX9_QdLk4/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=tnnX9_QdLk4" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/k8qT4AElBbo/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=k8qT4AElBbo" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/hae6hye3_x0/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=hae6hye3_x0" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/CKOGL3X1EGg/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=CKOGL3X1EGg" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/Y4xuLReDlvs/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=Y4xuLReDlvs" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/H8OrYvgWj0M/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=H8OrYvgWj0M" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/-aNq-6K5itE/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=-aNq-6K5itE" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Testimony 12</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Default Portfolio Item-->
+                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner hover-style1">
+                        <figure class="hover-style1-img">
+                            <img src="https://i.ytimg.com/vi/oAKr25gFGqU/hqdefault.jpg" alt="image">
+                            <div class="hover-style1-view">
+                                <a href="https://www.youtube.com/watch?v=oAKr25gFGqU" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                                </a>                                
+                            </div>
+                        </figure>
+                        <div class="hover-style1-title title-style-1">
+                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
+                            <span>Nishan Dhilon</span>
+                        </div>
+                    </div>
+                </div>
                 
                 <!--Default Portfolio Item-->
                 <!--<div class="default-portfolio-item Consulting Marketing col-md-4 col-sm-6 col-xs-12">
