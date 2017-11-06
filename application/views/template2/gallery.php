@@ -57,7 +57,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony</span>
+                            <span>Testimony: Madan Ghelot</span>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 1</span>
+                            <span>Testimony: Allwyn Menezes</span>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 2</span>
+                            <span>Testimony: David</span>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 3</span>
+                            <span>Testimony: Rajesh Menezes</span>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 4</span>
+                            <span>Testimony: Bikrant Dutta</span>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 5</span>
+                            <span>Testimony: Saby Gomes</span>
                         </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 6</span>
+                            <span>Testimony: Vijay Chauhan</span>
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 7</span>
+                            <span>Testimony: Deepa Modgekar</span>
                         </div>
                     </div>
                 </div>
@@ -193,7 +193,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 8</span>
+                            <span>Testimony: Niteen Shirodkar</span>
                         </div>
                     </div>
                 </div>
@@ -210,7 +210,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 9</span>
+                            <span>Testimony: Priyadarshan Bhadane</span>
                         </div>
                     </div>
                 </div>
@@ -244,7 +244,7 @@
                         </figure>
                         <div class="hover-style1-title title-style-1">
                             <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Nishan Dhilon</span>
+                            <span>Testimony: Nishan Dhilon</span>
                         </div>
                     </div>
                 </div>
