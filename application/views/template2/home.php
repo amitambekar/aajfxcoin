@@ -113,8 +113,8 @@
                     <!--video-box-->
                     <div class="video-image-box">
                         <figure class="image">
-                        	<img src="https://i.ytimg.com/vi/logOXhnD47U/hqdefault.jpg" alt="">
-                            <a href="https://www.youtube.com/watch?v=logOXhnD47U" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
+                        	<img src="https://i.ytimg.com/vi/GlCFe_QZ6A0/hqdefault.jpg" alt="">
+                            <a href="https://www.youtube.com/watch?v=GlCFe_QZ6A0" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
                         </figure>                        
                     </div>
                 </div>

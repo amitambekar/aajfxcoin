@@ -219,23 +219,6 @@
                 <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
                     <div class="inner hover-style1">
                         <figure class="hover-style1-img">
-                            <img src="https://i.ytimg.com/vi/-aNq-6K5itE/hqdefault.jpg" alt="image">
-                            <div class="hover-style1-view">
-                                <a href="https://www.youtube.com/watch?v=-aNq-6K5itE" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
-                                </a>                                
-                            </div>
-                        </figure>
-                        <div class="hover-style1-title title-style-1">
-                            <h3><a href="#">Aaj Eduplus Consultancy Pvt.Ltd.</a></h3>
-                            <span>Testimony 12</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Default Portfolio Item-->
-                <div class="default-portfolio-item Growth col-md-4 col-sm-6 col-xs-12">
-                    <div class="inner hover-style1">
-                        <figure class="hover-style1-img">
                             <img src="https://i.ytimg.com/vi/oAKr25gFGqU/hqdefault.jpg" alt="image">
                             <div class="hover-style1-view">
                                 <a href="https://www.youtube.com/watch?v=oAKr25gFGqU" class="overlay-link lightbox-image video-fancybox"><span class="icon flaticon-arrow"></span></a>
