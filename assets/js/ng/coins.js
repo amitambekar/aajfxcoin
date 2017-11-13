@@ -131,7 +131,7 @@ angular.module("MyApp", []).controller("MyController", function($scope,$http) {
         var success_cb = function(data)
         {
             alert_box("successfully transfered coins..!!")
-            //window.location.href=window._site_url+'coins';
+            window.location.href=window._site_url+'coins';
         }
         var request_data = {};
         request_data['wallet_debit_id'] = wallet_debit_id;

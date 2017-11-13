@@ -126,7 +126,7 @@
                                         <th>Coin Price</th>
                                         <th>Actual Amount</th>
                                         <th>Current Amount</th>
-                                        <th>Payment Type</th>
+                                        <th>Description</th>
                                         <th>Status</th>
                                         <th>Acceptance Date</th>
                                     </tr>
@@ -137,7 +137,7 @@
                                         <th>Coin Price</th>
                                         <th>Actual Amount</th>
                                         <th>Current Amount</th>
-                                        <th>Payment Type</th>
+                                        <th>Description</th>
                                         <th>Status</th>
                                         <th>Acceptance Date</th>
                                     </tr>
@@ -145,15 +145,15 @@
                                 <tbody>
                                     <?php 
                                     foreach($get_user_coin_data as $row1){ 
-                                        $payment_type = '';
-                                        if($row1['payment_type'] == 'Wallet Transfer' && $row1['user_coins_status'] == 'Credit')
+                                        $description = '';
+                                        if($row1['description'] == 'Wallet Transfer' && $row1['user_coins_status'] == 'Credit')
                                         {
-                                            $payment_type=$row1['payment_type'].' from '.$row1['transfer_username'];
-                                        }elseif ($row1['payment_type'] == 'Wallet Transfer' && $row1['user_coins_status'] == 'Debit') {
-                                            $payment_type=$row1['payment_type'].' to '.$row1['transfer_username'];
+                                            $description=$row1['description'].' from '.$row1['transfer_username'];
+                                        }elseif ($row1['description'] == 'Wallet Transfer' && $row1['user_coins_status'] == 'Debit') {
+                                            $description=$row1['description'].' to '.$row1['transfer_username'];
                                         }else
                                         {
-                                            $payment_type = $row1['payment_type'];
+                                            $description = $row1['description'];
                                         }
 
                                         ?>
@@ -162,7 +162,7 @@
                                       <td><?= $row1['coin_price']; ?></td>
                                       <td><?= $row1['amount']; ?></td>
                                       <td><?= ($row1['user_coins_status'] == 'requested' || $row1['user_coins_status'] == 'Debit')? '-' : $row1['coins']*$coin_price; ?></td>
-                                      <td><?= $payment_type; ?></td>
+                                      <td><?= $description; ?></td>
                                       <td><?= $row1['user_coins_status']; ?></td>
                                       <td><?= ($row1['acceptance_date'] != '0000-00-00 00:00:00') ? date("d-m-Y H:i a",strtotime($row1['acceptance_date'])) : '-'; ?></td>
                                         
