@@ -328,6 +328,9 @@ class Common_model extends CI_Model
 			$this->db->where($key,$value);
 		}
 		$this->db->join('users', 'users.userid = user_coins.userid','left');
+		//'LEFT JOIN (SELECT u.username as transfer_username,u.userid FROM users u ) as u1 ON `user_coins`.`from` = u1.`userid`'
+
+		$this->db->join('(SELECT u.username as transfer_username,u.userid FROM users u ) as u1', 'u1.userid = user_coins.from','left');
 		$query = $this->db->get('user_coins');
 		$main_data = array();
 		$data = array();

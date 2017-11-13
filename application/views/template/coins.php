@@ -18,52 +18,25 @@
                             <li class="dropdown">
                                 <button type="button" class="btn btn-primary waves-effect" ng-click="buy_coin_modal();">BUY COINS</button>
                                 <button type="button" class="btn btn-success waves-effect" ng-click="sell_coin_modal();">SELL COINS</button>
+                                <button type="button" class="btn btn-danger waves-effect" ng-click="wallet_transfer_modal();">WALLET TRANSFER</button>
                             </li>
                         </ul>
                     </div>
                     <div class="body">
                         <?php
                         $userid = $session_data['logged_in']['userid']; 
-                        $coin_price_data = getCoinPrice(true);
-                        $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+                        $coin_details = getCoinsDetails($userid);
+                        $coin_price = $coin_details['coin_price'];
                         
-                        $number_of_coins = 0;
-                        $number_of_released_coins = 0;
-                        $number_of_debited_coins = 0;
+                        $number_of_debited_coins = $coin_details['number_of_debited_coins'];
+                        $total_withdraw_amount = $coin_details['total_withdraw_amount'];
                         
-                        $total_amount = 0;
-                        $total_released_amount = 0;
-                        $total_withdraw_amount = 0;
-                        $get_user_coin_data = getUserCoin($userid);
-                        foreach ($get_user_coin_data as $row) {
-                            if($row['user_coins_status'] == 'accepted')
-                            {
-                                $number_of_coins = $number_of_coins + $row['coins'];
-                            }
+                        $number_of_coins = $coin_details["number_of_coins"];
+                        $total_amount = $coin_details["total_amount"];
 
-                            if($row['user_coins_status'] == 'Bonus')
-                            {
-                                $number_of_coins = $number_of_coins + $row['coins'];
-                            }
-
-                            if($row['user_coins_status'] == 'Credit')
-                            {
-                                $number_of_released_coins = $number_of_released_coins + $row['coins'];
-                            }
-
-                            if($row['user_coins_status'] == 'Debit' || $row['user_coins_status'] == 'Debit Request')
-                            {
-                                $number_of_debited_coins = $number_of_debited_coins + $row['coins'];
-                                $total_withdraw_amount = $total_withdraw_amount + $row['coins']*$row['coin_price'];
-                            }
-                        }
-
-                        $number_of_coins = $number_of_coins - $number_of_released_coins;
-                        $total_amount = $number_of_coins*$coin_price;
-
-                        $number_of_released_coins = $number_of_released_coins - $number_of_debited_coins;
-                        $total_released_amount = $number_of_released_coins*$coin_price;
-
+                        $number_of_released_coins = $coin_details["number_of_released_coins"];
+                        $total_released_amount = $coin_details["total_released_amount"];
+                        $get_user_coin_data = $coin_details["get_user_coin_data"];
 
                         ?>
                         <div class="row clearfix">
@@ -153,8 +126,8 @@
                                         <th>Coin Price</th>
                                         <th>Actual Amount</th>
                                         <th>Current Amount</th>
+                                        <th>Payment Type</th>
                                         <th>Status</th>
-                                        <th>Date</th>
                                         <th>Acceptance Date</th>
                                     </tr>
                                 </thead>
@@ -164,21 +137,33 @@
                                         <th>Coin Price</th>
                                         <th>Actual Amount</th>
                                         <th>Current Amount</th>
+                                        <th>Payment Type</th>
                                         <th>Status</th>
-                                        <th>Date</th>
                                         <th>Acceptance Date</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <?php 
-                                    foreach($get_user_coin_data as $row1){ ?>
+                                    foreach($get_user_coin_data as $row1){ 
+                                        $payment_type = '';
+                                        if($row1['payment_type'] == 'Wallet Transfer' && $row1['user_coins_status'] == 'Credit')
+                                        {
+                                            $payment_type=$row1['payment_type'].' from '.$row1['transfer_username'];
+                                        }elseif ($row1['payment_type'] == 'Wallet Transfer' && $row1['user_coins_status'] == 'Debit') {
+                                            $payment_type=$row1['payment_type'].' to '.$row1['transfer_username'];
+                                        }else
+                                        {
+                                            $payment_type = $row1['payment_type'];
+                                        }
+
+                                        ?>
                                     <tr>
                                       <td><?= $row1['coins']; ?></td>
                                       <td><?= $row1['coin_price']; ?></td>
                                       <td><?= $row1['amount']; ?></td>
                                       <td><?= ($row1['user_coins_status'] == 'requested' || $row1['user_coins_status'] == 'Debit')? '-' : $row1['coins']*$coin_price; ?></td>
+                                      <td><?= $payment_type; ?></td>
                                       <td><?= $row1['user_coins_status']; ?></td>
-                                      <td><?= date("d-m-Y H:i a",strtotime($row1['purchase_date'])); ?></td>
                                       <td><?= ($row1['acceptance_date'] != '0000-00-00 00:00:00') ? date("d-m-Y H:i a",strtotime($row1['acceptance_date'])) : '-'; ?></td>
                                         
                                     </tr>
@@ -309,6 +294,86 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary waves-effect" ng-click="sell_coins()">Submit</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large Size -->
+<div class="modal fade" id="wallet_transfer_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="largeModalLabel">Wallet Transfer</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Released Coins : </label>
+                            <input type="text" class="form-control" ng-model="released_coins" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Current Price : </label>
+                            <input type="text" class="form-control" ng-model="current_price" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Username : </label>
+                            <input type="text" class="form-control" ng-model="transfer_username"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Number of coins to transfer: </label>
+                            <input type="text" class="form-control" ng-model="number_of_coins" ng-change="calculate_amount()" ng-init="number_of_coins=0"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Amount to be transfer : </label>
+                            <input type="text" class="form-control" ng-model="amount" ng-init="amount=0" ng-change="calculate_coins()"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary waves-effect" ng-click="wallet_transfer()">Submit</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large Size -->
+<div class="modal fade" id="wallet_transfer_otp_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="largeModalLabel">Wallet Transfer OTP</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>OTP : </label>
+                            <input type="text" class="form-control" ng-model="transfer_otp"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary waves-effect" ng-click="wallet_transfer_otp()">Submit</button>
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
             </div>
         </div>

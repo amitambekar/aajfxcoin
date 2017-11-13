@@ -308,6 +308,60 @@ function getRemainingCoins()
 	return $result;	
 }
 
+function getCoinsDetails($userid)
+{
+	global $CI;
+	$coin_price_data = getCoinPrice(true);
+    $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+    
+    $number_of_coins = 0;
+    $number_of_released_coins = 0;
+    $number_of_debited_coins = 0;
+    
+    $total_amount = 0;
+    $total_released_amount = 0;
+    $total_withdraw_amount = 0;
+    $get_user_coin_data = getUserCoin($userid);
+    foreach ($get_user_coin_data as $row) {
+        if($row['user_coins_status'] == 'accepted')
+        {
+            $number_of_coins = $number_of_coins + $row['coins'];
+        }
+
+        if($row['user_coins_status'] == 'Bonus')
+        {
+            $number_of_coins = $number_of_coins + $row['coins'];
+        }
+
+        if($row['user_coins_status'] == 'Credit')
+        {
+            $number_of_released_coins = $number_of_released_coins + $row['coins'];
+        }
+
+        if($row['user_coins_status'] == 'Debit' || $row['user_coins_status'] == 'Debit Request')
+        {
+            $number_of_debited_coins = $number_of_debited_coins + $row['coins'];
+            $total_withdraw_amount = $total_withdraw_amount + $row['coins']*$row['coin_price'];
+        }
+    }
+
+    $number_of_coins = $number_of_coins - $number_of_released_coins;
+    $total_amount = $number_of_coins*$coin_price;
+
+    $number_of_released_coins = $number_of_released_coins - $number_of_debited_coins;
+    $total_released_amount = $number_of_released_coins*$coin_price;
+    $result = array();
+    $result["coin_price"]=$coin_price;
+    $result["number_of_coins"]=$number_of_coins;
+    $result["total_amount"]=$total_amount;
+    $result["number_of_released_coins"]=$number_of_released_coins;
+    $result["total_released_amount"]=$total_released_amount;
+    $result["number_of_debited_coins"]=$number_of_debited_coins;
+    $result["total_withdraw_amount"]=$total_withdraw_amount;
+    $result["get_user_coin_data"]=$get_user_coin_data;
+    return $result;
+}
+
 function getReleasedUserCoins($userid = 0,$agg_func='',$filters=array())
 {
 	global $CI;
