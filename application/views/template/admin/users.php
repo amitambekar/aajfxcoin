@@ -55,6 +55,7 @@
                                             <td><?= $row['status'] != '' ? $row['status']:'deactivate';?></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary waves-effect" ng-click="delete_user(<?php echo $row['userid']; ?>)">Delete</button>
+                                                <button type="button" class="btn btn-danger waves-effect" onclick="window.open('<?= site_url(); ?>admin_users/view/<?= $row['userid']; ?>','_blank');">View</button>
                                                 <button type="button" class="btn btn-danger waves-effect" ng-click="give_bonus_modal(<?php echo $row['userid']; ?>)">Give Bonus</button>
                                                 
                                             </td>
