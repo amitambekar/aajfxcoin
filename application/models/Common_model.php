@@ -428,6 +428,7 @@ class Common_model extends CI_Model
 			$this->db->where($key,$value);
 		}
 		$this->db->join('users', 'users.userid = referral_income.userid','left');
+		$this->db->join('(SELECT u.username as transfer_username,u.userid FROM users u ) as u1', 'u1.userid = referral_income.from_user','left');
 		$query = $this->db->get('referral_income');
 		$main_data = array();
 		$data = array();

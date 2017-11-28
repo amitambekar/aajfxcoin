@@ -18,6 +18,7 @@
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
                                 <button type="button" class="btn btn-success waves-effect" ng-click="sell_referral_coins_modal();">SELL COINS</button>
+                                <button type="button" class="btn btn-danger waves-effect" ng-click="wallet_transfer_modal();">WALLET TRANSFER</button>
                             </li>
                         </ul>
                     </div>
@@ -133,6 +134,17 @@
                                     {
                                         $amount = $row['coins']*$coin_price;
                                     }
+
+                                    $description = '';
+                                    if($row['description'] == 'Wallet Transfer' && $row['payment_status'] == 'Credit')
+                                    {
+                                        $description=$row['description'].' from '.$row['transfer_username'];
+                                    }elseif ($row['description'] == 'Wallet Transfer' && $row['payment_status'] == 'Debit') {
+                                        $description=$row['description'].' to '.$row['transfer_username'];
+                                    }else
+                                    {
+                                        $description = $row['description'];
+                                    }
                                     
                                     ?>
                                     <tr>
@@ -141,7 +153,7 @@
                                         <td><?= $amount; ?></td>
                                         <td><?= ($row['payment_details']) ? $row['payment_details'] : '-';?></td>
                                         <td><?= ($row['payment_type']) ? $row['payment_type'] : '-';?></td>
-                                        <td><?= ($row['description'] !='') ? $row['description'] : '-'; ?></td>
+                                        <td><?= ($row['description'] !='') ? $description : '-'; ?></td>
                                         <td><?= $row['payment_status']; ?></td>
                                         <td><?= date("d-M-Y g:i:s A",strtotime($row['referral_created_date']));?></td>
                                     </tr>
@@ -221,6 +233,86 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary waves-effect" ng-click="sell_referral_coins()">Submit</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large Size -->
+<div class="modal fade" id="wallet_transfer_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="largeModalLabel">Wallet Transfer</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Coins Earned: </label>
+                            <input type="text" class="form-control" ng-model="coins_earned" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Current Price : </label>
+                            <input type="text" class="form-control" ng-model="current_price" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Username : </label>
+                            <input type="text" class="form-control" ng-model="transfer_username"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Number of coins to transfer: </label>
+                            <input type="text" class="form-control" ng-model="number_of_coins" ng-change="calculate_amount()" ng-init="number_of_coins=0"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>Amount to be transfer : </label>
+                            <input type="text" class="form-control" ng-model="amount" ng-init="amount=0" ng-change="calculate_coins()"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary waves-effect" ng-click="wallet_transfer()">Submit</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large Size -->
+<div class="modal fade" id="wallet_transfer_otp_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="largeModalLabel">Wallet Transfer OTP</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label>OTP : </label>
+                            <input type="text" class="form-control" ng-model="transfer_otp"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary waves-effect" ng-click="wallet_transfer_otp()">Submit</button>
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
             </div>
         </div>

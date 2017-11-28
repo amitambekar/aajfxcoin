@@ -417,5 +417,41 @@ function getBonusIncomeDetails($userid=0)
 	$result = $CI->Common_model->getBonusIncomeDetails($userid);
 	return $result;
 }
+
+function getReferralCoinDetails($userid)
+{
+	global $CI;
+	$coin_price_data = getCoinPrice(true);
+    $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+    
+    $number_of_coins = 0;
+    $number_of_debited_coins = 0;
+    
+    $total_amount = 0;
+    $total_withdraw_amount = 0;
+    $get_user_coin_data = getReferralIncome($userid);
+    foreach ($get_user_coin_data as $row) {
+        if($row['payment_status'] == 'Credit')
+        {
+            $number_of_coins = $number_of_coins + $row['coins'];
+        }
+
+        if($row['payment_status'] == 'Debit' || $row['payment_status'] == 'Debit Request')
+        {
+            $number_of_debited_coins = $number_of_debited_coins + $row['coins'];
+            $total_withdraw_amount = $total_withdraw_amount + $row['coins']*$row['coin_price'];
+        }
+    }
+
+    $number_of_coins = $number_of_coins - $number_of_debited_coins;
+    $total_amount = $number_of_coins*$coin_price;
+    $result = array();
+    $result["coin_price"] = $coin_price;
+    $result["number_of_coins"] = $number_of_coins;
+    $result["total_amount"] = $total_amount;
+    $result["number_of_debited_coins"] = $number_of_debited_coins;
+    $result["total_withdraw_amount"] = $total_withdraw_amount;
+    return $result;
+}
 //$CI->output->enable_profiler(TRUE);
 ?>
