@@ -25,30 +25,16 @@
                     <div class="body">
                         <?php
                         $userid = $session_data['logged_in']['userid']; 
-                        $coin_price_data = getCoinPrice(true);
-                        $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+                        $referral_coin_details = getReferralCoinDetails($userid);
+                        $coin_price = $referral_coin_details['coin_price'];
                         
-                        $number_of_coins = 0;
-                        $number_of_debited_coins = 0;
+                        $number_of_coins = $referral_coin_details['number_of_coins'];
+                        $number_of_debited_coins = $referral_coin_details['number_of_debited_coins'];
                         
-                        $total_amount = 0;
-                        $total_withdraw_amount = 0;
-                        $get_user_coin_data = getReferralIncome($userid);
-                        foreach ($get_user_coin_data as $row) {
-                            if($row['payment_status'] == 'Credit')
-                            {
-                                $number_of_coins = $number_of_coins + $row['coins'];
-                            }
+                        $total_withdraw_amount = $referral_coin_details["total_withdraw_amount"];
+                        $total_amount = $referral_coin_details["total_amount"];
 
-                            if($row['payment_status'] == 'Debit' || $row['payment_status'] == 'Debit Request')
-                            {
-                                $number_of_debited_coins = $number_of_debited_coins + $row['coins'];
-                                $total_withdraw_amount = $total_withdraw_amount + $row['coins']*$row['coin_price'];
-                            }
-                        }
-
-                        $number_of_coins = $number_of_coins - $number_of_debited_coins;
-                        $total_amount = $number_of_coins*$coin_price;
+                        $get_referral_coin_data = $referral_coin_details["get_referral_coin_data"];
                         ?>
                         <div class="row clearfix">
                             <div class="col-lg-3">
@@ -126,7 +112,7 @@
                                 $coin_price_data = getCoinPrice(true);
                                 $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
                                 ?>
-                                <?php foreach ($get_user_coin_data as $row ) {  
+                                <?php foreach ($get_referral_coin_data as $row ) {  
                                     if($row['payment_status'] == 'Debit' || $row['payment_status'] == 'Debit Request')
                                     {
                                         $amount = $row['coins']*$row['coin_price'];    

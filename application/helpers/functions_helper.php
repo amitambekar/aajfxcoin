@@ -429,8 +429,8 @@ function getReferralCoinDetails($userid)
     
     $total_amount = 0;
     $total_withdraw_amount = 0;
-    $get_user_coin_data = getReferralIncome($userid);
-    foreach ($get_user_coin_data as $row) {
+    $get_referral_coin_data = getReferralIncome($userid);
+    foreach ($get_referral_coin_data as $row) {
         if($row['payment_status'] == 'Credit')
         {
             $number_of_coins = $number_of_coins + $row['coins'];
@@ -451,6 +451,7 @@ function getReferralCoinDetails($userid)
     $result["total_amount"] = $total_amount;
     $result["number_of_debited_coins"] = $number_of_debited_coins;
     $result["total_withdraw_amount"] = $total_withdraw_amount;
+    $result["get_referral_coin_data"]=$get_referral_coin_data;
     return $result;
 }
 //$CI->output->enable_profiler(TRUE);
