@@ -56,7 +56,7 @@
                                             <td><?= $row['payment_type'];?></td>
                                             <td><?= $row['referral_created_date'];?></td>
                                             <td>
-                                                <a href="javascript:void(0);" class="deletePackage" ng-click="sell_coins_modal(<?php echo $row['referral_income_id']; ?>,<?php echo $row['userid']; ?>)">Accept</a>
+                                                <a href="javascript:void(0);" ng-click="sell_coins_modal(<?php echo $row['referral_income_id']; ?>,<?php echo $row['userid']; ?>)">Accept</a>
                                                 <a href="javascript:void(0);" class="deletePackage" ng-click="deleteReferralCoinsRequest(<?php echo $row['referral_income_id']; ?>)">Delete</a>
                                             </td>
                                         </tr>

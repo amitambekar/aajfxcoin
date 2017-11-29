@@ -56,7 +56,7 @@
                                             <td><?= $row['payment_type'];?></td>
                                             <td><?= $row['purchase_date'];?></td>
                                             <td>
-                                                <a href="javascript:void(0);" class="deletePackage" ng-click="userCoinsRequestAction(<?php echo $row['user_coins_id']; ?>,<?php echo $row['userid']; ?>,'accepted')">Accept</a>
+                                                <a href="javascript:void(0);" ng-click="userCoinsRequestAction(<?php echo $row['user_coins_id']; ?>,<?php echo $row['userid']; ?>,'accepted')">Accept</a>
                                                 <a href="javascript:void(0);" class="deletePackage" ng-click="deleteUserCoinsRequest(<?php echo $row['user_coins_id']; ?>)">Delete</a>
                                             </td>
                                         </tr>

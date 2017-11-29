@@ -57,7 +57,7 @@
                                             <td><?= $row['package_amount']*$row['quantity'];?></td>
                                             <td><?= $row['purchase_date'];?></td>
                                             <td>
-                                                <a href="javascript:void(0);" class="deletePackage" ng-click="userPackageRequestAction(<?php echo $row['user_package_id']; ?>,<?php echo $row['userid']; ?>,'accepted')">Accept</a>
+                                                <a href="javascript:void(0);" ng-click="userPackageRequestAction(<?php echo $row['user_package_id']; ?>,<?php echo $row['userid']; ?>,'accepted')">Accept</a>
                                                 <a href="javascript:void(0);" class="deletePackage" ng-click="deleteUserPackageRequest(<?php echo $row['user_package_id']; ?>)">Delete</a>
                                             </td>
                                         </tr>
