@@ -146,7 +146,7 @@ class Admin_user_coins extends CI_Controller {
 	        $remaining_coins = $remaining_coins_data['remaining_coins'];
 			if($remaining_coins < $coins)
 			{
-				$error_array['coins'] = 'Remaining Coins are zero.';	
+				$error_array['coins'] = 'Remaining Coins are less than your requirement.';	
 			}
 	        if(count($error_array) == 0 )
 	        {

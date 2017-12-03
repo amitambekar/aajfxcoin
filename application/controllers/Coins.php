@@ -84,7 +84,7 @@ class Coins extends CI_Controller {
 			
 			if($remaining_coins < $coins)
 			{
-				$error_array['coins'] = 'Remaining Coins are zero.';	
+				$error_array['coins'] = 'Remaining Coins are less than your requirement.';	
 			}
 			
 			if(count($error_array) == 0 )
