@@ -124,12 +124,17 @@
                         </a>
                     </li>
                     <?php if($role_id == 1){ ?>
-                    <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_coin','admin_users','admin_notifications','admin_news','admin_payout','admin_user_coins'))){ echo 'class="active"'; } ?>>
+                    <li <?php if(isset($controller_name) && strpos($controller_name, 'admin_') !== false){ echo 'class="active"'; } ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">folder</i>
                             <span>Admin</span>
                         </a>
                         <ul class="ml-menu">
+                            <li <?php if(isset($controller_name) && $controller_name == 'admin_summary'){ echo 'class="active"'; } ?>>
+                                <a href="<?php echo site_url(); ?>admin_summary">
+                                    <span>Summary</span>
+                                </a>
+                            </li>
                             <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_coin','admin_users','admin_notifications','admin_news'))){ echo 'class="active"'; } ?>>
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Masters</span>

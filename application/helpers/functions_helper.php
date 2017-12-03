@@ -303,9 +303,23 @@ function getRemainingCoins()
 	global $CI;
 	$CI->load->model('Common_model');
 	$total_coins = $CI->Common_model->getTotalCoins();
-	$total_used_coins = $CI->Common_model->getUsedCoins();
-	$result = $total_coins-$total_used_coins;
-	return $result;	
+	$total_user_coins_data = $CI->Common_model->getUserCoins();
+	$referral_coins_data = $CI->Common_model->getReferralCoins();
+	
+	$user_coins_used = $total_user_coins_data['coins_used'];
+	$referral_coins_used = $referral_coins_data['coins_used'];
+	
+	$remaining_coins = $total_coins - ($user_coins_used+$referral_coins_used);
+	$total_used_coins = $user_coins_used + $referral_coins_used;
+	$result = array();
+	$result['total_coins'] = $total_coins;
+	$result['user_coins_used'] = $user_coins_used;
+	$result['referral_coins_used'] = $referral_coins_used;
+	$result['total_used_coins'] = $total_used_coins;
+	$result['remaining_coins'] = $remaining_coins;
+	$result['total_user_coins_data'] = $total_user_coins_data;
+	$result['referral_coins_data'] = $referral_coins_data;
+	return $result;
 }
 
 function getCoinsDetails($userid)

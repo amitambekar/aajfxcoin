@@ -78,7 +78,8 @@ class Coins extends CI_Controller {
 			{
 				$error_array['coin_price'] = 'Coin Price not set yet.';	
 			}
-			$remaining_coins = getRemainingCoins();
+			$remaining_coins_data = getRemainingCoins();
+			$remaining_coins = $remaining_coins_data['remaining_coins'];
 			$coins = $amount / $coin_price;
 			
 			if($remaining_coins < $coins)

@@ -399,18 +399,90 @@ class Common_model extends CI_Model
 		return $total_coins;
     }
 
-    function getUsedCoins()
+    function getUserCoins()
     {
     	$this->db->trans_start();
-    	$this->db->select('sum(user_coins.coins) as total_used_coins');
+    	//credit
+    	$this->db->select('sum(user_coins.coins) as total_credit');
+    	$status = array('Bonus','accepted','requested','Credit');
+    	$this->db->where_in('status',$status);
     	$query = $this->db->get('user_coins');
-		$total_used_coins =0;
+		$total_credit =0;
 		foreach($query->result() as $row)
 		{
-			$total_used_coins = $row->total_used_coins;
+			$total_credit = $row->total_credit;
+		}
+		//debit
+		$this->db->select('sum(user_coins.coins) as total_debit');
+    	$status = array('Debit','Debit Request');
+    	$this->db->where_in('status',$status);
+    	$query = $this->db->get('user_coins');
+		$total_debit =0;
+		foreach($query->result() as $row)
+		{
+			$total_debit = $row->total_debit;
+		}
+		//amitjain debit
+		$this->db->select('sum(user_coins.coins) as total_debit_from_amitjain');
+    	$status = array('Debit','Debit Request');
+    	$this->db->where_in('status',$status);
+    	$this->db->where_in('userid',1);
+    	$query1 = $this->db->get('user_coins');
+		$total_debit_from_amitjain =0;
+		foreach($query1->result() as $row)
+		{
+			$total_debit_from_amitjain = $row->total_debit_from_amitjain;
 		}
     	$this->db->trans_complete();
-		return $total_used_coins;
+		$result = array();
+		$result['total_credit'] = $total_credit;
+		$result['total_debit'] = $total_debit;
+		$result['total_debit_from_amitjain'] = $total_debit_from_amitjain;
+		$result['coins_used'] = $total_credit - ($total_debit-$total_debit_from_amitjain);
+		return $result;
+    }
+
+    function getReferralCoins()
+    {
+    	$this->db->trans_start();
+    	//credit
+    	$this->db->select('sum(referral_income.coins) as total_credit');
+    	$status = array('Credit');
+    	$this->db->where_in('status',$status);
+    	$query = $this->db->get('referral_income');
+		$total_credit =0;
+		foreach($query->result() as $row)
+		{
+			$total_credit = $row->total_credit;
+		}
+		//debit
+		$this->db->select('sum(referral_income.coins) as total_debit');
+    	$status = array('Debit','Debit Request');
+    	$this->db->where_in('status',$status);
+    	$query = $this->db->get('referral_income');
+		$total_debit =0;
+		foreach($query->result() as $row)
+		{
+			$total_debit = $row->total_debit;
+		}
+		//amitjain debit
+		$this->db->select('sum(referral_income.coins) as total_debit_from_amitjain');
+    	$status = array('Debit','Debit Request');
+    	$this->db->where_in('status',$status);
+    	$this->db->where_in('userid',1);
+    	$query1 = $this->db->get('referral_income');
+		$total_debit_from_amitjain =0;
+		foreach($query1->result() as $row)
+		{
+			$total_debit_from_amitjain = $row->total_debit_from_amitjain;
+		}
+    	$this->db->trans_complete();
+		$result = array();
+		$result['total_credit'] = $total_credit;
+		$result['total_debit'] = $total_debit;
+		$result['total_debit_from_amitjain'] = $total_debit_from_amitjain;
+		$result['coins_used'] = $total_credit - ($total_debit-$total_debit_from_amitjain);
+		return $result;
     }
 
     function getReferralIncome($userid = 0,$filters = array())
