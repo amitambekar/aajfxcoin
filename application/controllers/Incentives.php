@@ -81,7 +81,7 @@ class Incentives extends CI_Controller {
 
 			if($created_date < date("2018-01-26"))
 			{
-				$error_array['coins'] = 'You can not sell coins before 26 January 2018.';
+				//$error_array['coins'] = 'You can not sell coins before 26 January 2018.';
 			}
 
 			if(count($error_array) == 0 )
@@ -174,6 +174,11 @@ class Incentives extends CI_Controller {
 	        	$status = 'success';
 			    $message = array("wallet_debit_id"=>$wallet_trxn_data['wallet_debit_id'],"wallet_credit_id"=>$wallet_trxn_data['wallet_credit_id']);
 			    $status_code = 200;
+			    $userInfo = getUserInfo($userid);
+				$email = $userInfo['email'];
+				$mobile = $userInfo['mobile'];
+			    $text = "Your OTP for wallet transfer is ".$transfer_otp;
+			    send_sms($mobile,$text);
 	        }else
 			{
 				$status = 'error';
