@@ -63,11 +63,11 @@ class Register extends CI_Controller {
 				$error_array['email'] = 'Email ID already exists';
 			}
 
-			$checkMobileNumberExists = checkMobileNumberExists('userdetails',array('mobile' => $mobile));	
+			/*$checkMobileNumberExists = checkMobileNumberExists('userdetails',array('mobile' => $mobile));	
 			if($checkMobileNumberExists == true)
 			{
 				$error_array['mobile'] = 'Mobile Number already exists';
-			}
+			}*/
 			if(count($error_array) == 0 )
 			{
 				$this->load->model('Register_model');
