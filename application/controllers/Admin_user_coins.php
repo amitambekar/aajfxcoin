@@ -153,11 +153,11 @@ class Admin_user_coins extends CI_Controller {
 	        	$coin_price_data = getCoinPrice(true);
 	        	$coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
 
-	        	$bonus_coins = $coins/2;
+	        	//$bonus_coins = $coins/4;
 		        $this->Adminusercoins_model->userCoinsRequestAction($user_coins_id,$status,$userid,$accepted_date);
 		        $obj = new Payout();
 		        $obj->referral_bonus($accepted_date,$userid,$user_coins_id);
-		        $this->Adminusers_model->give_bonus($userid,$bonus_coins,$coin_price,'Bonus Coins',$accepted_date);
+		        //$this->Adminusers_model->give_bonus($userid,$bonus_coins,$coin_price,'Bonus Coins',$accepted_date);
 				$status = 'success';
 			    $message = 'Request Accepted successfully';	
 			    $status_code = 200;
