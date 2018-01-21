@@ -204,12 +204,12 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
+                            <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_user_payment_details'))){ echo 'class="active"'; } ?>>
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Payment Details</span>
                                 </a>
                                 <ul class="ml-menu">
-                                    <li>
+                                    <?php /* ?><li>
                                         <a href="<?php echo site_url(); ?>admin_user_payment_details">
                                             <span>Payment dashboard</span>
                                         </a>
@@ -223,10 +223,10 @@
                                         <a href="<?php echo site_url(); ?>admin_user_payment_details/loyality_income">
                                             <span>Loyality income payouts</span>
                                         </a>
-                                    </li>
-                                    <li>
+                                    </li><?php */ ?>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_payment_details' && $function_name == 'referral_income'){ echo 'class="active"'; } ?>>
                                         <a href="<?php echo site_url(); ?>admin_user_payment_details/referral_income">
-                                            <span>Referral income payouts</span>
+                                            <span>Referral income</span>
                                         </a>
                                     </li>
                                 </ul>

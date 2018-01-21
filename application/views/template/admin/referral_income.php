@@ -22,9 +22,9 @@
                                     <tr>
                                         <th>User ID</th>
                                         <th>Username</th>
-                                        <th>Total Amount</th>
-                                        <th>Amount Paid</th>
-                                        <th>Amount Remaining</th>
+                                        <th>Total Coins</th>
+                                        <th>Paid Coins</th>
+                                        <th>Remaining Coins</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -32,25 +32,25 @@
                                     <tr>
                                         <th>User ID</th>
                                         <th>Username</th>
-                                        <th>Total Amount</th>
-                                        <th>Amount Paid</th>
-                                        <th>Amount Remaining</th>
+                                        <th>Total Coins</th>
+                                        <th>Paid Coins</th>
+                                        <th>Remaining Coins</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                <?php $details=referral_income_details();?>
+                                <?php $details=getReferralIncomeDetails(); ?>
                                 <?php foreach ($details as $row ) { 
                                     ?>
                                     <tr >
                                         <td><?= $row['userid'];?></td>
                                         <td><?= $row['username'];?></td>
-                                        <td><?= $row['Total_Amount'];?></td>
-                                        <td><?= $row['Paid_Amount'];?></td>
-                                        <td><?= $row['Remaining_Amount'];?></td>
+                                        <td><?= $row['Total_Coins'];?></td>
+                                        <td><?= $row['Paid_Coins'];?></td>
+                                        <td><?= $row['Remaining_Coins'];?></td>
                                         <td>
-                                            <button type="button" class="btn btn-danger waves-effect" ng-click="release_payment_modal(<?= $row['userid'];?>,'referral_income')">Release Payment</button>
-                                            <a class="btn btn-primary waves-effect" href="<?= site_url(); ?>admin_user_payment_details/view/referral_income/<?= $row['userid']; ?>" target="__blank__">View Details</a>
+                                            <?php /* ?><button type="button" class="btn btn-danger waves-effect" ng-click="release_payment_modal(<?= $row['userid'];?>,'referral_income')">Release Payment</button>
+                                            <a class="btn btn-primary waves-effect" href="<?= site_url(); ?>admin_user_payment_details/view/referral_income/<?= $row['userid']; ?>" target="__blank__">View Details</a><?php */ ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
