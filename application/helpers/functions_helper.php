@@ -359,7 +359,6 @@ function getCoinsDetails($userid)
         }
     }
 
-    $number_of_coins = $number_of_coins - $number_of_released_coins;
     $total_amount = $number_of_coins*$coin_price;
 
     $number_of_released_coins = $number_of_released_coins - $number_of_debited_coins;
@@ -467,6 +466,56 @@ function getReferralCoinDetails($userid)
     $result["total_withdraw_amount"] = $total_withdraw_amount;
     $result["get_referral_coin_data"]=$get_referral_coin_data;
     return $result;
+}
+
+function payRemainingReferralIncome($userid=0,$payment_details="",$payment_type="",$description="")
+{
+	global $CI;
+	$CI->load->model('Admin_payout_model');
+	$referral_income_details = getReferralIncomeDetails($userid);
+	$coin_price_data = getCoinPrice(true);
+	$coin_price = $coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0;	
+	$created_date = config_item('current_date');
+
+	foreach ($referral_income_details as $row) {
+		$remaining_coins = $row['Remaining_Coins'];
+		$userid = $row['userid'];
+	
+		if($remaining_coins > 0)
+		{
+			$CI->Admin_payout_model->payRemainingReferralIncome($userid,$userid,$coin_price,$remaining_coins,$payment_details,$payment_type,$description,$created_date,$created_date);
+		}
+	}
+}
+
+function getUserCoinsDetails($userid=0)
+{
+	global $CI;
+	$CI->load->model('Common_model');
+	$result = $CI->Common_model->getUserCoinsDetails($userid);
+	return $result;
+}
+
+function payUserCoinsIncome($userid=0,$payment_details="",$payment_type="",$description="")
+{
+	global $CI;
+	$CI->load->model('Admin_payout_model');
+	$user_coins_details = getUserCoinsDetails($userid);
+
+	$coin_price_data = getCoinPrice(true);
+	$coin_price = $coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0;	
+	$purchase_date = config_item('current_date');
+
+	foreach ($user_coins_details as $row) {
+		$purchased_coins = $row['Purchased_Coins']/30;
+		$userid = $row['userid'];
+		$amount = $coin_price * $purchased_coins;
+		if($purchased_coins > 0)
+		{
+			$CI->Admin_payout_model->payUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,'Credit',$purchase_date,$purchase_date);
+			//$CI->Admin_payout_model->payUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,'Debit',$purchase_date,$purchase_date);
+		}
+	}
 }
 //$CI->output->enable_profiler(TRUE);
 ?>
