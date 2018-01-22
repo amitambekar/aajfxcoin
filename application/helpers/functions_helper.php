@@ -513,7 +513,7 @@ function payUserCoinsIncome($userid=0,$payment_details="",$payment_type="",$desc
 		if($purchased_coins > 0)
 		{
 			$CI->Admin_payout_model->payUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,'Credit',$purchase_date,$purchase_date);
-			//$CI->Admin_payout_model->payUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,'Debit',$purchase_date,$purchase_date);
+			$CI->Admin_payout_model->payUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,'Debit',$purchase_date,$purchase_date);
 		}
 	}
 }
