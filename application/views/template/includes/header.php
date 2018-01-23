@@ -224,6 +224,11 @@
                                             <span>Loyality income payouts</span>
                                         </a>
                                     </li><?php */ ?>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_user_payment_details' && $function_name == 'user_coins_income'){ echo 'class="active"'; } ?>>
+                                        <a href="<?php echo site_url(); ?>admin_user_payment_details/user_coins_income">
+                                            <span>User Coins income</span>
+                                        </a>
+                                    </li>
                                     <li <?php if(isset($controller_name) && $controller_name == 'admin_user_payment_details' && $function_name == 'referral_income'){ echo 'class="active"'; } ?>>
                                         <a href="<?php echo site_url(); ?>admin_user_payment_details/referral_income">
                                             <span>Referral income</span>

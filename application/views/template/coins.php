@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="content">
                                         <div class="text">1 COIN</div>
-                                        <div class="number" ><?= "₹ ".str_replace('.0000', '', $coin_price); ?></div>
+                                        <div class="number" ><?= "₹ ".round($coin_price,2); ?></div>
                                     </div>
                                 </div>
                             </div>

@@ -27,20 +27,12 @@ class Admin_user_payment_details extends CI_Controller {
 		$this->load->view('template/admin/user_payment_details_view',$data);
 	}
 
-	public function roi()
+	public function user_coins_income()
 	{
 		$session_data = $this->session->userdata;
 		$data = array();
 		$data['session_data'] = $session_data;
-		$this->load->view('template/admin/roi',$data);
-	}
-
-	public function loyality_income()
-	{
-		$session_data = $this->session->userdata;
-		$data = array();
-		$data['session_data'] = $session_data;
-		$this->load->view('template/admin/loyality_income',$data);
+		$this->load->view('template/admin/user_coins_income',$data);
 	}
 
 	public function referral_income()
