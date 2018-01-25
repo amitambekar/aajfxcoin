@@ -21,7 +21,8 @@ class Admin_payout extends CI_Controller {
 	{
 		if($this->input->post())
 		{
-			payUserCoinsIncome(0,"Cheque","Bank","Paid");
+			$status = $this->input->post('status');
+			payRemainingUserCoinsIncome(0,"Cheque","Bank","Paid",$status);
 			$status = 'success';
 	        $message = 'Payout successfully done.';
 	        $status_code = 200;

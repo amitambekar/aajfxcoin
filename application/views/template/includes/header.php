@@ -204,7 +204,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_user_payment_details'))){ echo 'class="active"'; } ?>>
+                            <li <?php if(isset($controller_name) && in_array($controller_name,array('admin_user_payment_details','admin_payout'))){ echo 'class="active"'; } ?>>
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Payment Details</span>
                                 </a>
@@ -224,6 +224,11 @@
                                             <span>Loyality income payouts</span>
                                         </a>
                                     </li><?php */ ?>
+                                    <li <?php if(isset($controller_name) && $controller_name == 'admin_payout'){ echo 'class="active"'; } ?>>
+                                        <a href="<?php echo site_url(); ?>admin_payout">
+                                            <span>Payout</span>
+                                        </a>
+                                    </li>
                                     <li <?php if(isset($controller_name) && $controller_name == 'admin_user_payment_details' && $function_name == 'user_coins_income'){ echo 'class="active"'; } ?>>
                                         <a href="<?php echo site_url(); ?>admin_user_payment_details/user_coins_income">
                                             <span>User Coins income</span>

@@ -17,7 +17,7 @@ class Admin_payout_model extends CI_Model
         $this->db->trans_complete();
     }
     
-    function payUserCoinsIncome($userid,$from_user,$amount,$coin_price,$remaining_coins,$payment_details,$payment_type,$description,$status,$purchase_date,$acceptance_date)
+    function payRemainingUserCoinsIncome($userid,$from_user,$amount,$coin_price,$remaining_coins,$payment_details,$payment_type,$description,$status,$purchase_date,$acceptance_date)
     {
         $this->db->trans_start();
         $array = array('userid' => $userid,'from_user'=>$from_user,'amount'=>$amount,'coin_price'=>$coin_price,'coins' => $remaining_coins,'payment_details'=>$payment_details,'payment_type'=>$payment_type,'description'=>$description,'status'=>$status,'purchase_date'=>$purchase_date,'acceptance_date'=>$acceptance_date);

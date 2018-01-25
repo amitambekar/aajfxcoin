@@ -9,9 +9,9 @@ angular.module("MyApp", []).controller("MyController", function($scope,$http) {
 		SSK.site_call("AJAX",window._site_url+"admin_home/clear_all_cache",request_data, clear_cache_success_cb);
 	}
 
-	$scope.return_of_interest_and_loyality_payout = function()
+	$scope.released_monthly_payout = function(status)
 	{
-		if(confirm("Do you want to Generate Return Of Interest and Loyality Payout for this Month?"))
+		if(confirm("Do you want to Release Monthly Payout to all?"))
 		{
 			var success_cb = function(data){
 				alert_box(data.message);
@@ -20,11 +20,10 @@ angular.module("MyApp", []).controller("MyController", function($scope,$http) {
 				alert_box(data.message);
 			}
 			request_data = {};
-			request_data['q'] = 1;
-			SSK.site_call("AJAX",window._site_url+"admin_payout/return_of_interest_and_loyality_payout",request_data, success_cb,failure_cb);	
+			request_data['status'] = status;
+			SSK.site_call("AJAX",window._site_url+"admin_payout/user_coins_payout",request_data, success_cb,failure_cb);	
 		}
 	}
-
 
 	$scope.referral_income_payout = function()
 	{

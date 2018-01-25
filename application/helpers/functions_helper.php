@@ -496,7 +496,7 @@ function getUserCoinsDetails($userid=0)
 	return $result;
 }
 
-function payUserCoinsIncome($userid=0,$payment_details="",$payment_type="",$description="")
+function payRemainingUserCoinsIncome($userid=0,$payment_details="",$payment_type="",$description="",$status="")
 {
 	global $CI;
 	$CI->load->model('Admin_payout_model');
@@ -512,8 +512,7 @@ function payUserCoinsIncome($userid=0,$payment_details="",$payment_type="",$desc
 		$amount = $coin_price * $purchased_coins;
 		if($purchased_coins > 0)
 		{
-			$CI->Admin_payout_model->payUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,'Credit',$purchase_date,$purchase_date);
-			$CI->Admin_payout_model->payUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,'Debit',$purchase_date,$purchase_date);
+			$CI->Admin_payout_model->payRemainingUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,$status,$purchase_date,$purchase_date);
 		}
 	}
 }

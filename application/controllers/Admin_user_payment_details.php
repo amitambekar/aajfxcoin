@@ -14,7 +14,7 @@ class Admin_user_payment_details extends CI_Controller {
 		$session_data = $this->session->userdata;
 		$data = array();
 		$data['session_data'] = $session_data;
-		$this->load->view('template/admin/user_payment_details',$data);
+		$this->load->view('template/admin/payout',$data);
 	}
 
 	public function view($payment_method,$view_userid = 0)
