@@ -6,7 +6,7 @@ class Payout{
 	        $this->conn = mysqli_connect($CI->db->hostname, $CI->db->username, $CI->db->password,$CI->db->database);
 	        
 	        //$this->payout_perc = array('1'=>7,'2'=>3,'3'=>1,'4'=>1,'5'=>0.5,'6'=>0.3,'7'=>0.2);
-	        $this->payout_perc = array('1'=>5,'2'=>3,'3'=>1,'4'=>0.5,'5'=>0.5,'6'=>0.5,'7'=>0.5);
+	        $this->payout_perc = array('1'=>5,'2'=>1,'3'=>1,'4'=>0.5,'5'=>0.5,'6'=>0.5,'7'=>0.5);
 	        $this->expiry_months = 30;
 	    }
 
