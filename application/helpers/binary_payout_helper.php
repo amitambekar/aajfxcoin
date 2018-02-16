@@ -38,14 +38,35 @@ class Payout{
 				}
 			}
 		}
+
+		function credit_monthly_payout($date)
+		{
+			global $CI;
+			$months = 30;
+			$CI->load->model('Admin_payout_model');
+
+			$coin_price_data = getCoinPrice(true);
+	        $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+	        $select = "SELECT * FROM user_coins WHERE status IN ('Bonus','accepted') AND PERIOD_DIFF(EXTRACT(YEAR_MONTH FROM \"".$date."\"),EXTRACT(YEAR_MONTH FROM acceptance_date))<=".$months;
+	        $result = mysqli_query($this->conn,$select);
+	        while($row = mysqli_fetch_array($result))
+	        {
+	        	//payRemainingUserCoinsIncome(0,"Cheque","Bank","Paid",$status);
+	        	$userid = $row['userid'];
+	        	$coins = $row['coins']/$months;
+	        	$amount = $coins*$coin_price;
+	        	
+	        	$payment_details = "Cheque";
+	        	$payment_type = "Bank";
+	        	$description = "Paid";
+	        	$status = 'Credit';
+	        	$CI->Admin_payout_model->payRemainingUserCoinsIncome($userid,0,$amount,$coin_price,$coins,$payment_details,$payment_type,$description,$status,$date,$date);
+	        }
+		}
 		
 		function payout($date)
 		{
-			$week_start = date("Y-m-d", strtotime('monday this week',$date));
-			$week_end =  date("Y-m-d", strtotime('sunday this week',$date));
-			
-			$this->return_of_interest_and_loyality_payout($date);
-			$this->referral_bonus($date,$week_start,$week_end);
+
 		}
 	}
 ?>

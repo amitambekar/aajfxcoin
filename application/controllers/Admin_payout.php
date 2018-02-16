@@ -22,7 +22,15 @@ class Admin_payout extends CI_Controller {
 		if($this->input->post())
 		{
 			$status = $this->input->post('status');
-			payRemainingUserCoinsIncome(0,"Cheque","Bank","Paid",$status);
+			$date = config_item('current_date');
+			
+			if($status == 'Credit')
+			{
+				$obj = new Payout();
+		    	$obj->credit_monthly_payout($date);	
+			}else if($status == 'Debit'){
+				payRemainingUserCoinsIncome(0,"Cheque","Bank","Paid",$status);
+			}
 			$status = 'success';
 	        $message = 'Payout successfully done.';
 	        $status_code = 200;
