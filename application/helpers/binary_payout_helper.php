@@ -51,7 +51,6 @@ class Payout{
 	        $result = mysqli_query($this->conn,$select);
 	        while($row = mysqli_fetch_array($result))
 	        {
-	        	//payRemainingUserCoinsIncome(0,"Cheque","Bank","Paid",$status);
 	        	$userid = $row['userid'];
 	        	$coins = $row['coins']/$months;
 	        	$amount = $coins*$coin_price;
@@ -62,11 +61,6 @@ class Payout{
 	        	$status = 'Credit';
 	        	$CI->Admin_payout_model->payRemainingUserCoinsIncome($userid,0,$amount,$coin_price,$coins,$payment_details,$payment_type,$description,$status,$date,$date);
 	        }
-		}
-		
-		function payout($date)
-		{
-
 		}
 	}
 ?>
