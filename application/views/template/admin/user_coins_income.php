@@ -14,6 +14,11 @@
                         <h2>
                             User Coins income details
                         </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <button type="button" class="btn btn-primary waves-effect" onclick="window.location.href='<?php echo base_url(); ?>admin_user_payment_details/user_coins_income_excel'">Export to Excel</button>
+                            </li>
+                        </ul>
                     </div>
                     <div class="body">
                         <div class="table-responsive">

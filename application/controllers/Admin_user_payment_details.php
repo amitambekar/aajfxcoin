@@ -153,4 +153,28 @@ class Admin_user_payment_details extends CI_Controller {
 			echo responseObject($response,$status_code);	
 		}
     }
+
+    function user_coins_income_excel()
+    {
+    	$data  = getUserCoinsDetails();
+    	function purchased_coins_filter($var)
+		{
+			return($var['Purchased_Coins'] > 0);
+		}
+    	$data = array_filter($data,"purchased_coins_filter");
+    	$temp = array();
+    	foreach($data as $row)
+    	{
+    		$tmp = array();
+    		foreach($row as $k=>$v)
+    		{
+    			if(!in_array($k,array('Purchased_Coins','Purchased_Amount','Debited_Coins','Debited_Amount')))
+    			{
+    				$tmp[$k] = $v;
+    			}
+	    	}
+	    	array_push($temp,$tmp);
+    	}
+    	export_to_excel($temp,'Monthly Coin Payout Report.xlsx');
+    }
 }

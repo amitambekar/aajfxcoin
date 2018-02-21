@@ -517,5 +517,55 @@ function payRemainingUserCoinsIncome($userid=0,$payment_details="",$payment_type
 		}
 	}
 }
+
+function export_to_excel($export_data,$filename)
+{
+	global $CI;
+	$CI->load->library("excel");
+	$object = new PHPExcel();
+
+	$object->setActiveSheetIndex(0);
+	$object->getDefaultStyle()->getFont()->setName('Arial')->setSize(10);
+	$object->getActiveSheet()->getStyle('1:1')->getFont()->setName('Arial')->setBold(true);
+	
+
+	$cnt = 0;
+	foreach($export_data as $row)
+	{
+		if($cnt == 0)
+		{
+			$table_columns = array();
+			foreach($row as $k=>$v)
+			{
+				array_push($table_columns,$k);
+			}
+		}
+		$cnt++;
+	}
+
+	$column = 0;
+	foreach($table_columns as $field)
+	{
+		$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+		$column++;
+	}
+
+	$excel_row = 2;
+	foreach($export_data as $row)
+	{
+		$cols = 0;
+		foreach($row as $r)
+		{
+			$object->getActiveSheet()->setCellValueByColumnAndRow($cols, $excel_row, $r);
+			$cols++;
+		}
+		$excel_row++;
+	}
+
+	$object_writer = PHPExcel_IOFactory::createWriter($object, 'Excel5');
+	header('Content-Type: application/vnd.ms-excel');
+	header('Content-Disposition: attachment;filename="'.$filename.'"');
+	$object_writer->save('php://output');
+}
 //$CI->output->enable_profiler(TRUE);
 ?>
