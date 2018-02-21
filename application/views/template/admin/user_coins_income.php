@@ -31,23 +31,25 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>User ID</th>
-                                        <th>Username</th>
-                                        <th>Purchased Coins</th>
-                                        <th>Purchased Amount</th>
-                                        <th>Debited Coins</th>
-                                        <th>Debited Amount</th>
-                                        <th>Remaining Coins</th>
-                                        <th>Remaining Amount</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
                                 <tbody>
                                 <?php $details=getUserCoinsDetails(); ?>
+                                <?php 
+                                $purchased_coins = 0;
+                                $purchased_amount = 0;
+                                $debited_coins = 0;
+                                $debited_amount = 0;
+                                $remaining_coins = 0;
+                                $remaining_amount = 0;
+                                ?>
                                 <?php foreach ($details as $row ) { 
                                     if($row['Purchased_Coins'] > 0) {
+
+                                    $purchased_coins = $purchased_coins+$row['Purchased_Coins'];
+                                    $purchased_amount = $purchased_amount+$row['Purchased_Amount'];
+                                    $debited_coins = $debited_coins+$row['Debited_Coins'];
+                                    $debited_amount = $debited_amount+$row['Debited_Amount'];
+                                    $remaining_coins = $remaining_coins+$row['Remaining_Coins'];
+                                    $remaining_amount = $remaining_amount+$row['Remaining_Amount'];     
                                     ?>
                                     <tr>
                                         <td><?= $row['userid'];?></td>
@@ -65,6 +67,19 @@
                                     </tr>
                                 <?php } } ?>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td><b>Total : </b></td>
+                                        <td><b><?= $purchased_coins;?></b></td>
+                                        <td><b><?= $purchased_amount;?></b></td>
+                                        <td><b><?= $debited_coins;?></b></td>
+                                        <td><b><?= $debited_amount;?></b></td>
+                                        <td><b><?= $remaining_coins;?></b></td>
+                                        <td><b><?= $remaining_amount;?></b></td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

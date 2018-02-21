@@ -28,19 +28,19 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>User ID</th>
-                                        <th>Username</th>
-                                        <th>Total Coins</th>
-                                        <th>Paid Coins</th>
-                                        <th>Remaining Coins</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
                                 <tbody>
                                 <?php $details=getReferralIncomeDetails(); ?>
+
+                                <?php 
+                                $total_coins = 0;
+                                $paid_coins = 0;
+                                $remaining_coins = 0;
+                                ?>
                                 <?php foreach ($details as $row ) { 
+
+                                    $total_coins = $total_coins+$row['Total_Coins'];
+                                    $paid_coins = $paid_coins+$row['Paid_Coins'];
+                                    $remaining_coins = $remaining_coins+$row['Remaining_Coins'];
                                     ?>
                                     <tr >
                                         <td><?= $row['userid'];?></td>
@@ -55,6 +55,16 @@
                                     </tr>
                                 <?php } ?>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th><b>Total:</b></th>
+                                        <th><?= $total_coins; ?></th>
+                                        <th><?= $paid_coins; ?></th>
+                                        <th><?= $remaining_coins; ?></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
