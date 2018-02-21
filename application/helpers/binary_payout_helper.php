@@ -13,7 +13,8 @@ class Payout{
 		function referral_bonus($date,$userid,$user_coins_id)
 		{
 			$coin_price_data = getCoinPrice(true);
-	        $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+	        //$coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+			$coin_price = 2.00;
 			$select = "SELECT uc.coins from user_coins uc WHERE uc.id= '".$user_coins_id."' AND uc.status='accepted'";
 			$result = mysqli_query($this->conn,$select);
 			while($row = mysqli_fetch_array($result))

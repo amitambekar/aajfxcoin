@@ -473,8 +473,9 @@ function payRemainingReferralIncome($userid=0,$payment_details="",$payment_type=
 	global $CI;
 	$CI->load->model('Admin_payout_model');
 	$referral_income_details = getReferralIncomeDetails($userid);
-	$coin_price_data = getCoinPrice(true);
-	$coin_price = $coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0;	
+	//$coin_price_data = getCoinPrice(true);
+	//$coin_price = $coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0;
+	$coin_price = 2.00;
 	$created_date = config_item('current_date');
 
 	foreach ($referral_income_details as $row) {
@@ -507,12 +508,12 @@ function payRemainingUserCoinsIncome($userid=0,$payment_details="",$payment_type
 	$purchase_date = config_item('current_date');
 
 	foreach ($user_coins_details as $row) {
-		$purchased_coins = $row['Purchased_Coins']/30;
+		$remaining_coins = $row['Remaining_Coins'];
 		$userid = $row['userid'];
-		$amount = $coin_price * $purchased_coins;
-		if($purchased_coins > 0)
+		$amount = $coin_price * $remaining_coins;
+		if($remaining_coins > 0)
 		{
-			$CI->Admin_payout_model->payRemainingUserCoinsIncome($userid,0,$amount,$coin_price,$purchased_coins,$payment_details,$payment_type,$description,$status,$purchase_date,$purchase_date);
+			$CI->Admin_payout_model->payRemainingUserCoinsIncome($userid,0,$amount,$coin_price,$remaining_coins,$payment_details,$payment_type,$description,$status,$purchase_date,$purchase_date);
 		}
 	}
 }
