@@ -434,8 +434,8 @@ function getBonusIncomeDetails($userid=0)
 function getReferralCoinDetails($userid)
 {
 	global $CI;
-	$coin_price_data = getCoinPrice(true);
-    $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+	
+    $coin_price = 2.0;
     
     $number_of_coins = 0;
     $number_of_debited_coins = 0;

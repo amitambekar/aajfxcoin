@@ -15,18 +15,18 @@
                         <h2>
                             Referral Income
                         </h2>
-                        <ul class="header-dropdown m-r--5">
+                        <!--<ul class="header-dropdown m-r--5">
                             <li class="dropdown">
                                 <button type="button" class="btn btn-success waves-effect" ng-click="sell_referral_coins_modal();">SELL COINS</button>
                                 <button type="button" class="btn btn-danger waves-effect" ng-click="wallet_transfer_modal();">WALLET TRANSFER</button>
                             </li>
-                        </ul>
+                        </ul>-->
                     </div>
                     <div class="body">
                         <?php
                         $userid = $session_data['logged_in']['userid']; 
                         $referral_coin_details = getReferralCoinDetails($userid);
-                        $coin_price = $referral_coin_details['coin_price'];
+                        $coin_price = 2;
                         
                         $number_of_coins = $referral_coin_details['number_of_coins'];
                         $number_of_debited_coins = $referral_coin_details['number_of_debited_coins'];
@@ -100,6 +100,7 @@
                                         <th>Username</th>
                                         <th>Coins</th>
                                         <th>Amount</th>
+                                        <th>From</th>
                                         <th>Payment Details</th>
                                         <th>Payment Type</th>
                                         <th>Payment Description</th>
@@ -109,8 +110,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $coin_price_data = getCoinPrice(true);
-                                $coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+                                $coin_price = 2;
                                 ?>
                                 <?php foreach ($get_referral_coin_data as $row ) {  
                                     if($row['payment_status'] == 'Debit' || $row['payment_status'] == 'Debit Request')
@@ -137,6 +137,7 @@
                                         <td><?= $row['username'];?></td>
                                         <td><?= $row['coins'];?></td>
                                         <td><?= $amount; ?></td>
+                                        <td><?= $row['transfer_username'];?></td>
                                         <td><?= ($row['payment_details']) ? $row['payment_details'] : '-';?></td>
                                         <td><?= ($row['payment_type']) ? $row['payment_type'] : '-';?></td>
                                         <td><?= ($row['description'] !='') ? $description : '-'; ?></td>
@@ -149,6 +150,7 @@
                                     <th>Username</th>
                                     <th>Coins</th>
                                     <th>Amount</th>
+                                    <th>From</th>
                                     <th>Payment Details</th>
                                     <th>Payment Type</th>
                                     <th>Payment Description</th>
