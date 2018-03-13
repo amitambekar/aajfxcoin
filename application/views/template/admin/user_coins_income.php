@@ -33,7 +33,6 @@
                                         <th>Debited Amount</th>
                                         <th>Remaining Coins</th>
                                         <th>Remaining Amount</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,10 +64,6 @@
                                         <td><?= $row['Debited_Amount'];?></td>
                                         <td><?= $row['Remaining_Coins'];?></td>
                                         <td><?= $row['Remaining_Amount'];?></td>
-                                        <td>
-                                            <?php /* ?><button type="button" class="btn btn-danger waves-effect" ng-click="release_payment_modal(<?= $row['userid'];?>,'referral_income')">Release Payment</button>
-                                            <a class="btn btn-primary waves-effect" href="<?= site_url(); ?>admin_user_payment_details/view/referral_income/<?= $row['userid']; ?>" target="__blank__">View Details</a><?php */ ?>
-                                        </td>
                                     </tr>
                                 <?php } } ?>
                                 </tbody>
@@ -82,7 +77,6 @@
                                         <td><b><?= $debited_amount;?></b></td>
                                         <td><b><?= $remaining_coins;?></b></td>
                                         <td><b><?= $remaining_amount;?></b></td>
-                                        <td></td>
                                     </tr>
                                 </tfoot>
                             </table>

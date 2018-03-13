@@ -14,6 +14,31 @@
                         <h2>
                             Referral income details
                         </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <select class="form-control" id="referral_date">
+                                    <option>All</option>
+                                    <?php
+                                    $date = '';//config_item('current_date'); 
+                                    if(isset($_GET['date']) && $_GET['date'] != '')
+                                    {
+                                        $date = $_GET['date'];
+                                    }
+                                    $today = date("2018-01-01");
+                                    for($i=0;$i<40;$i++){ 
+                                    $d = date("Y-m-d", strtotime("$today +".$i." month"));
+                                    if(strtotime(date("Y-m-d")) > strtotime($d))
+                                    {
+                                    ?>
+                                    <option value="<?= $d; ?>" <?php if($date!='' && $date==$d){ echo "selected"; }?>><?= $d; ?></option> 
+                                    <?php } } ?>
+                                    
+                                </select>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-primary waves-effect" ng-click="show_referral_income();">Show</button>
+                            </li>
+                        </ul>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -22,15 +47,12 @@
                                     <tr>
                                         <th>User ID</th>
                                         <th>Username</th>
-                                        <th>Total Coins</th>
-                                        <th>Paid Coins</th>
                                         <th>Remaining Coins</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php $details=getReferralIncomeDetails(); ?>
-
+                                <?php
+                                $details=getReferralIncomeDetails(0,$date); ?>
                                 <?php 
                                 $total_coins = 0;
                                 $paid_coins = 0;
@@ -45,13 +67,7 @@
                                     <tr >
                                         <td><?= $row['userid'];?></td>
                                         <td><?= $row['username'];?></td>
-                                        <td><?= $row['Total_Coins'];?></td>
-                                        <td><?= $row['Paid_Coins'];?></td>
                                         <td><?= $row['Remaining_Coins'];?></td>
-                                        <td>
-                                            <?php /* ?><button type="button" class="btn btn-danger waves-effect" ng-click="release_payment_modal(<?= $row['userid'];?>,'referral_income')">Release Payment</button>
-                                            <a class="btn btn-primary waves-effect" href="<?= site_url(); ?>admin_user_payment_details/view/referral_income/<?= $row['userid']; ?>" target="__blank__">View Details</a><?php */ ?>
-                                        </td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>
@@ -59,10 +75,7 @@
                                     <tr>
                                         <th></th>
                                         <th><b>Total:</b></th>
-                                        <th><?= $total_coins; ?></th>
-                                        <th><?= $paid_coins; ?></th>
                                         <th><?= $remaining_coins; ?></th>
-                                        <th></th>
                                     </tr>
                                 </tfoot>
                             </table>

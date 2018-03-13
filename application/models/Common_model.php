@@ -513,7 +513,19 @@ class Common_model extends CI_Model
 		return $main_data;
     }
 
-    function getReferralIncomeDetails($userid=0)
+    function dateFilter($date,$alias)
+    {
+    	$date_string = '';
+    	if($date != '')
+    	{
+    		$year = date("Y",strtotime($date));
+    		$month = date("m",strtotime($date));
+    		$date_string = ' AND extract(year from '.$alias.'.created_date)='.$year.' AND extract(month from '.$alias.'.created_date)='.$month.' ';
+    	}
+    	return $date_string;
+    }
+
+    function getReferralIncomeDetails($userid=0,$date)
     {
     	$this->db->trans_start();
     	$where_string = '';
@@ -522,7 +534,7 @@ class Common_model extends CI_Model
     		$where_string = " AND u.userid=".$userid;
     	}
 
-    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,COALESCE((COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)),0) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM referral_income a1 WHERE a1.status='Credit' group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM referral_income a2 WHERE a2.status IN ('Debit','Debit Request') group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
+    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,COALESCE((COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)),0) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM referral_income a1 WHERE a1.status='Credit' ".$this->dateFilter($date,'a1')." group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM referral_income a2 WHERE a2.status IN ('Debit','Debit Request') ".$this->dateFilter($date,'a2')." group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
 
     	$query = $this->db->query($sql_query);
 		

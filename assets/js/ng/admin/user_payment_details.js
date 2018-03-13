@@ -46,4 +46,15 @@ angular.module("MyApp", []).controller("MyController", function($scope,$http) {
         SSK.site_call("AJAX",window._site_url+"admin_user_payment_details/get_payment_details",request_data, success_cb);
         
     }
+
+    $scope.show_referral_income = function()
+    {
+        var referral_date = $("#referral_date").val() || '';
+        if(referral_date == '')
+        {
+            alert("please select date.");
+            return false;
+        }
+        window.location.href = window._site_url+"admin_user_payment_details/referral_income?date="+referral_date;
+    }
 });

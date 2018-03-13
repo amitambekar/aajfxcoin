@@ -391,11 +391,11 @@ function getReferralIncome($userid=0,$filters=array())
 	return $result;
 }
 
-function getReferralIncomeDetails($userid=0)
+function getReferralIncomeDetails($userid=0,$date)
 {
 	global $CI;
 	$CI->load->model('Common_model');
-	$result = $CI->Common_model->getReferralIncomeDetails($userid);
+	$result = $CI->Common_model->getReferralIncomeDetails($userid,$date);
 	return $result;
 }
 

@@ -12,8 +12,7 @@ class Payout{
 
 		function referral_bonus($date,$userid,$user_coins_id)
 		{
-			$coin_price_data = getCoinPrice(true);
-	        //$coin_price = ($coin_price_data['coin_price'] ? $coin_price_data['coin_price'] : 0);
+			global $CI;
 			$coin_price = 2.00;
 			$select = "SELECT uc.coins from user_coins uc WHERE uc.id= '".$user_coins_id."' AND uc.status='accepted'";
 			$result = mysqli_query($this->conn,$select);
@@ -34,8 +33,21 @@ class Payout{
 					{
 						$status = 'Credit';
 					}
-					$insert = "INSERT INTO referral_income(userid,from_user,coin_price,coins,description,status,created_date) VALUES('".$tree[$i]['userid']."','".$userid."','".$coin_price."','".$coins."','Referral income level ".$i."','".$status."','".$date."')";
-					mysqli_query($this->conn,$insert);
+					//$insert = "INSERT INTO referral_income(userid,from_user,coin_price,coins,description,status,created_date) VALUES('".$tree[$i]['userid']."','".$userid."','".$coin_price."','".$coins."','Referral income level ".$i."','".$status."','".$date."')";
+
+					$CI->db->trans_start();
+					$array = array(
+							'userid' => $tree[$i]['userid'],
+							'from_user'=>$userid,
+							'coin_price'=>$coin_price,
+							'coins'=>$coins,
+							'description'=>'Referral income level '.$i,
+							'status'=>$status,
+							'created_date'=>$date
+							);
+					$CI->db->set($array);
+					$CI->db->insert('referral_income');
+					$CI->db->trans_complete();
 				}
 			}
 		}
