@@ -71,8 +71,8 @@ class Payout{
 	        	$payment_details = "Cheque";
 	        	$payment_type = "Bank";
 	        	$description = "Paid";
-	        	$status = 'Credit';
-	        	$CI->Admin_payout_model->payRemainingUserCoinsIncome($userid,0,$amount,$coin_price,$coins,$payment_details,$payment_type,$description,$status,$date,$date);
+	        	$CI->Admin_payout_model->payRemainingUserCoinsIncome($userid,0,$row['id'],$amount,$coin_price,$coins,$payment_details,$payment_type,$description,'Credit',$date,$date);
+	        	$CI->Admin_payout_model->payRemainingUserCoinsIncome($userid,0,$row['id'],$amount,$coin_price,$coins,$payment_details,$payment_type,$description,'Debit',$date,$date);
 	        }
 		}
 	}

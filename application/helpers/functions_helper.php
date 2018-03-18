@@ -492,11 +492,11 @@ function payRemainingReferralIncome($userid=0,$payment_details="",$payment_type=
 	}
 }
 
-function getUserCoinsDetails($userid=0)
+function getUserCoinsDetails($userid=0,$date)
 {
 	global $CI;
 	$CI->load->model('Common_model');
-	$result = $CI->Common_model->getUserCoinsDetails($userid);
+	$result = $CI->Common_model->getUserCoinsDetails($userid,$date);
 	return $result;
 }
 

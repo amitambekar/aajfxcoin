@@ -17,8 +17,8 @@
                     </div>
                     <div class="body">
                         <button type="button" class="btn btn-primary waves-effect" ng-click="released_monthly_payout('Credit')">Release Monthly Payout to all</button>
-                        <button type="button" class="btn btn-primary waves-effect" ng-click="released_monthly_payout('Debit')">Give Release Monthly Payout to all</button>
-                        <!--<button type="button" class="btn btn-danger waves-effect" ng-click="referral_income_payout()">Give Referral Income to all</button>-->
+                        <!--<button type="button" class="btn btn-primary waves-effect" ng-click="released_monthly_payout('Debit')">Give Release Monthly Payout to all</button>
+                        <button type="button" class="btn btn-danger waves-effect" ng-click="referral_income_payout()">Give Referral Income to all</button>-->
                     </div>
                 </div>
             </div>

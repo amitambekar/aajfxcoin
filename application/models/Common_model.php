@@ -513,14 +513,14 @@ class Common_model extends CI_Model
 		return $main_data;
     }
 
-    function dateFilter($date,$alias)
+    function dateFilter($date,$column,$alias)
     {
     	$date_string = '';
     	if($date != '')
     	{
     		$year = date("Y",strtotime($date));
     		$month = date("m",strtotime($date));
-    		$date_string = ' AND extract(year from '.$alias.'.created_date)='.$year.' AND extract(month from '.$alias.'.created_date)='.$month.' ';
+    		$date_string = ' AND extract(year from '.$alias.'.'.$column.')='.$year.' AND extract(month from '.$alias.'.'.$column.')='.$month.' ';
     	}
     	return $date_string;
     }
@@ -534,7 +534,7 @@ class Common_model extends CI_Model
     		$where_string = " AND u.userid=".$userid;
     	}
 
-    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,COALESCE((COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)),0) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM referral_income a1 WHERE a1.status='Credit' ".$this->dateFilter($date,'a1')." group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM referral_income a2 WHERE a2.status IN ('Debit','Debit Request') ".$this->dateFilter($date,'a2')." group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
+    	$sql_query = "SELECT u.userid,u.username,COALESCE(total_payout.total_coins,0) as Total_Coins,COALESCE(total_paid.paid_coins,0) as Paid_Coins,COALESCE((COALESCE(total_payout.total_coins,0)-COALESCE(total_paid.paid_coins,0)),0) as Remaining_Coins FROM users u LEFT JOIN (SELECT a1.userid,sum(COALESCE(a1.coins,0))*1.0 as total_coins  FROM referral_income a1 WHERE a1.status='Credit' ".$this->dateFilter($date,'created_date','a1')." group by a1.userid) as total_payout ON u.userid=total_payout.userid LEFT JOIN (SELECT a2.userid,sum(COALESCE(a2.coins,0))*1.0 as paid_coins FROM referral_income a2 WHERE a2.status IN ('Debit','Debit Request') ".$this->dateFilter($date,'created_date','a2')." group by a2.userid) as total_paid ON u.userid=total_paid.userid WHERE Total_Coins > 0 ".$where_string." ORDER BY Total_Coins DESC";
 
     	$query = $this->db->query($sql_query);
 		
@@ -653,7 +653,7 @@ class Common_model extends CI_Model
 		return $data;
     }
 
-    function getUserCoinsDetails($userid=0)
+    function getUserCoinsDetails($userid=0,$date)
     {
     	$this->db->trans_start();
     	$where_string = '';
@@ -662,7 +662,7 @@ class Common_model extends CI_Model
     		$where_string = " WHERE u.userid=".$userid;
     	}
 
-    	$sql_query = "SELECT u.userid,u.username,ud.mobile,ud.bank_name,ud.bank_account_holder_name,ud.branch,ud.account_number,ud.ifsc_code,COALESCE(Purchased_Coins,0) as Purchased_Coins,COALESCE(Remaining_Coins,0)-COALESCE(Debited_Coins,0) as Remaining_Coins,COALESCE(Debited_Coins,0) as Debited_Coins,COALESCE(Purchased_Amount,0) as Purchased_Amount,COALESCE(Remaining_Amount,0)-COALESCE(Debited_Amount,0) as Remaining_Amount,COALESCE(Debited_Amount,0) as Debited_Amount from users u LEFT JOIN (SELECT uc1.userid,COALESCE(sum(uc1.coins),0) as Purchased_Coins,COALESCE(sum(uc1.amount),0) as Purchased_Amount from user_coins uc1 where uc1.status IN ('Bonus','accepted','requested') group by uc1.userid) as purchased ON purchased.userid=u.userid LEFT JOIN (SELECT uc2.userid,COALESCE(sum(uc2.coins),0) as Remaining_Coins,COALESCE(sum(uc2.amount),0) as Remaining_Amount from user_coins uc2 where uc2.status IN ('Credit') group by uc2.userid) as remaining ON u.userid=remaining.userid LEFT JOIN (SELECT uc3.userid,COALESCE(sum(uc3.coins),0) as Debited_Coins,COALESCE(sum(uc3.amount),0) as Debited_Amount from user_coins uc3 where uc3.status IN ('Debit','Debit Request') group by uc3.userid) as debit ON u.userid=debit.userid LEFT JOIN userdetails ud ON u.userid=ud.userid ".$where_string." ORDER BY Purchased_Coins DESC";
+    	$sql_query = "SELECT u.userid,u.username,ud.mobile,ud.bank_name,ud.bank_account_holder_name,ud.branch,ud.account_number,ud.ifsc_code,COALESCE(Purchased_Coins,0) as Purchased_Coins,COALESCE(Remaining_Coins,0)-COALESCE(Debited_Coins,0) as Remaining_Coins,COALESCE(Debited_Coins,0) as Debited_Coins,COALESCE(Purchased_Amount,0) as Purchased_Amount,COALESCE(Remaining_Amount,0)-COALESCE(Debited_Amount,0) as Remaining_Amount,COALESCE(Debited_Amount,0) as Debited_Amount from users u LEFT JOIN (SELECT uc1.userid,COALESCE(sum(uc1.coins),0) as Purchased_Coins,COALESCE(sum(uc1.amount),0) as Purchased_Amount from user_coins uc1 where uc1.status IN ('Bonus','accepted','requested') group by uc1.userid) as purchased ON purchased.userid=u.userid LEFT JOIN (SELECT uc2.userid,COALESCE(sum(uc2.coins),0) as Remaining_Coins,COALESCE(sum(uc2.amount),0) as Remaining_Amount from user_coins uc2 where uc2.status IN ('Credit') ".$this->dateFilter($date,'purchase_date','uc2')." group by uc2.userid) as remaining ON u.userid=remaining.userid LEFT JOIN (SELECT uc3.userid,COALESCE(sum(uc3.coins),0) as Debited_Coins,COALESCE(sum(uc3.amount),0) as Debited_Amount from user_coins uc3 where uc3.status IN ('Debit','Debit Request') ".$this->dateFilter($date,'purchase_date','uc3')." group by uc3.userid) as debit ON u.userid=debit.userid LEFT JOIN userdetails ud ON u.userid=ud.userid ".$where_string." ORDER BY Purchased_Coins DESC";
     	$query = $this->db->query($sql_query);
 		
 		$data = array();
