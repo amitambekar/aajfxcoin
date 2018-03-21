@@ -157,7 +157,7 @@ class Admin_user_payment_details extends CI_Controller {
     function user_coins_income_excel()
     {
     	$date = '';
-    	if(isset($_GET) && $_GET['date'])
+    	if(isset($_GET['date']) && $_GET['date']!='')
     	{
     		$date = $_GET['date'];
     	}
@@ -186,7 +186,7 @@ class Admin_user_payment_details extends CI_Controller {
     function referral_income_excel()
     {
     	$date = '';
-    	if(isset($_GET) && $_GET['date'])
+    	if(isset($_GET['date']) && $_GET['date']!='')
     	{
     		$date = $_GET['date'];
     	}
