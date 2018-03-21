@@ -58,3 +58,12 @@ angular.module("MyApp", []).controller("MyController", function($scope,$http) {
         window.location.href = window._site_url+"admin_user_payment_details/referral_income?date="+referral_date;
     }
 });
+function excel_download(path,date_id)
+{
+    var date = $("#"+date_id).val();
+    if(date != '')
+    {
+        path = path + '?date='+date;    
+    }
+    window.location.href=path;
+}

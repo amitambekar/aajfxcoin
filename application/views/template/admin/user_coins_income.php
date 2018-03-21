@@ -29,7 +29,7 @@ function show_data()
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
                                 <select class="form-control" id="show_date">
-                                    <option>All</option>
+                                    <option value="">All</option>
                                     <?php
                                     $date = '';//config_item('current_date'); 
                                     if(isset($_GET['date']) && $_GET['date'] != '')
@@ -50,9 +50,9 @@ function show_data()
                             <li>
                                 <button type="button" class="btn btn-primary waves-effect" onclick="show_data();">Show</button>
                             </li>
-                            <!--<li class="dropdown">
-                                <button type="button" class="btn btn-primary waves-effect" onclick="window.location.href='<?php echo base_url(); ?>admin_user_payment_details/user_coins_income_excel'">Export to Excel</button>
-                            </li>-->
+                            <li class="dropdown">
+                                <button type="button" class="btn btn-primary waves-effect" onclick="excel_download('<?php echo base_url(); ?>admin_user_payment_details/user_coins_income_excel','show_date')">Export to Excel</button>
+                            </li>
                         </ul>
                     </div>
                     <div class="body">

@@ -156,7 +156,12 @@ class Admin_user_payment_details extends CI_Controller {
 
     function user_coins_income_excel()
     {
-    	$data  = getUserCoinsDetails();
+    	$date = '';
+    	if(isset($_GET) && $_GET['date'])
+    	{
+    		$date = $_GET['date'];
+    	}
+    	$data  = getUserCoinsDetails(0,$date);
     	function purchased_coins_filter($var)
 		{
 			return($var['Purchased_Coins'] > 0);
@@ -168,13 +173,42 @@ class Admin_user_payment_details extends CI_Controller {
     		$tmp = array();
     		foreach($row as $k=>$v)
     		{
-    			if(!in_array($k,array('Purchased_Coins','Purchased_Amount','Debited_Coins','Debited_Amount')))
+    			if(!in_array($k,array('Purchased_Coins','Purchased_Amount','Remaining_Coins','Remaining_Amount')))
     			{
     				$tmp[$k] = $v;
     			}
 	    	}
 	    	array_push($temp,$tmp);
     	}
-    	export_to_excel($temp,'Monthly Coin Payout Report.xlsx');
+    	export_to_excel($temp,'Monthly Coin Payout Report '.$date.'.xlsx');
+    }
+
+    function referral_income_excel()
+    {
+    	$date = '';
+    	if(isset($_GET) && $_GET['date'])
+    	{
+    		$date = $_GET['date'];
+    	}
+    	$data  = getReferralIncomeDetails(0,$date);
+    	function filter($var)
+		{
+			return($var['Total_Coins'] > 0);
+		}
+    	$data = array_filter($data,"filter");
+    	$temp = array();
+    	foreach($data as $row)
+    	{
+    		$tmp = array();
+    		foreach($row as $k=>$v)
+    		{
+    			if(!in_array($k,array('Remaining_Coins','Paid_Coins')))
+    			{
+    				$tmp[$k] = $v;
+    			}
+	    	}
+	    	array_push($temp,$tmp);
+    	}
+    	export_to_excel($temp,'Referral Payout Report '.$date.'.xlsx');
     }
 }
