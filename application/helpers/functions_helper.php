@@ -524,7 +524,7 @@ function payRemainingUserCoinsIncome($userid=0,$payment_details="",$payment_type
 function export_to_excel($export_data,$filename)
 {
 	global $CI;
-	$CI->load->library("excel");
+	$CI->load->library('PHPExcel');
 	$object = new PHPExcel();
 
 	$object->setActiveSheetIndex(0);
